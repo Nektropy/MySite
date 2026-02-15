@@ -67,7 +67,7 @@ const friendsConfig = [
         url: "https://sakurain.net/",
         avatar: "https://sakurain.net/image/logo.webp",
         desc: "用代码构建未来。"
-    };
+    },
 
     {
         name: "缎金SatinAuの主页",
