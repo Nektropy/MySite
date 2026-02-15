@@ -70,10 +70,10 @@ const friendsConfig = [
     };
 
     {
-        name: "SAKURAIN TEAM",
-        url: "https://sakurain.net/",
-        avatar: "https://sakurain.net/image/logo.webp",
-        desc: "用代码构建未来。"
+        name: "缎金SatinAuの主页",
+        url: "https://satinau.cn",
+        avatar: "https://satinau.cn/favicon.ico",
+        desc: "一只雪狐的摸鱼小站。"
     }
 
 ];
