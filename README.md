@@ -1,87 +1,87 @@
-# 熵的个人名片 / Nektropy's Personal Card
+# 熵的小站
 
-🌐 **Live Website**: [https://www.nekt.qzz.io/](https://www.nekt.qzz.io/ "https://www.nekt.qzz.io/")
-一个现代化的个人名片网站，采用毛玻璃设计风格，展示个人信息、技能、兴趣和联系方式。
+![网站预览](https://img.shields.io/badge/状态-在线成功-brightgreen)
+![最后更新](https://img.shields.io/badge/最后更新-2026年2月-blue)
 
-A modern personal card website with glassmorphism design, showcasing personal information, skills, interests, and contact details.
+> 重要的是不要停止质疑，好奇心有其存在的理由。 —— 爱因斯坦
 
-## ✨ 特性 / Features
+## 📋 项目简介
 
-- 🎨 **现代化设计** - 毛玻璃效果和动态卡片布局
-- 🌙 **深色模式** - 一键切换亮色/深色主题
-- 📱 **响应式设计** - 完美适配桌面和移动设备
-- ⏰ **实时计时器** - 显示网站运行时间和当前时间
-- 💬 **名言展示** - 集成一言API获取随机名言
-- 📊 **访问统计** - 显示网站访问量和访客数
-- 🎯 **交互动画** - 平滑的过渡效果和悬停动画
+这是我的个人主页源代码仓库。一个简洁、现代、带有极客风格的个人名片式网站，集成了个人信息展示、技术栈、兴趣爱好、留言板、趣味功能（赛博算卦）和实用站点导航等功能。
 
-- 🎨 **Modern Design** - Glassmorphism effects and dynamic card layout
-- 🌙 **Dark Mode** - One-click light/dark theme switching
-- 📱 **Responsive Design** - Perfect adaptation for desktop and mobile devices
-- ⏰ **Real-time Timer** - Display website running time and current time
-- 💬 **Quote Display** - Integrated Hitokoto API for random quotes
-- 📊 **Visit Statistics** - Show website traffic and visitor count
-- 🎯 **Interactive Animations** - Smooth transitions and hover effects
-## 🌐 页面功能 / Page Features
+本站定位为个人在网络世界的一个据点，既是对外展示自己的窗口，也是一个不断折腾、学习前端技术的试验场。
 
-### 主页面 (index.html)
-- 个人资料展示
-- 技能和兴趣标签
-- 实时网站运行时间
-- 名言展示和刷新功能
-- 社交链接和联系方式
-- 访问统计显示
+**在线地址**: [正在寻找托管中]
 
-### 友情链接页面 (friends.html)
-- 极简的友链展示
-- 头像和名称布局
-- 点击跳转功能
-- 响应式网格设计
+## ✨ 功能特性
 
-## 📊 网站统计 / Website Statistics
+-   **个人名片展示**: 头像、名称、签名、在线状态
+-   **关于我/目标愿景**: 清晰展示个人背景与未来规划
+-   **技能与兴趣网格**: 美观展示技术栈和兴趣爱好
+-   **联系方式**: 邮箱、地区信息
+-   **网站运行时间**: 动态计算建站时长和当前时间
+-   **每日一言**: 点击刷新按钮可更换名言警句 (集成第三方API)
+-   **最近留言 & 留言板**: 集成 Waline 评论系统，支持互动
+-   **赛博算卦**: 一个趣味性的随机占卜小工具 (独立页面)
+-   **实用站点推荐**: 精选工具和资源导航 (独立页面)
+-   **友情链接**: 展示好友站点
+-   **双端适配**: 支持电脑端侧边栏菜单和移动端下拉菜单
+-   **主题切换**: 亮色/暗色主题切换功能
+-   **访问统计**: 集成不蒜子统计访问量和访客数
 
-网站集成不蒜子统计服务，自动显示：
-- 总访问次数 (Total Page Views)
-- 独立访客数 (Unique Visitors)
+## 🛠️ 技术栈
 
-## 🔧 浏览器兼容性 / Browser Compatibility
+-   **前端框架**: 原生 HTML5 / CSS3 / JavaScript (ES6+)
+-   **图标库**: [Font Awesome 6](https://fontawesome.com/) (via CDN)
+-   **评论系统**: [Waline](https://waline.js.org/) (部署于后端服务器)
+-   **API 集成**:
+    -   每日一言: [hitokoto.cn](https://hitokoto.cn)
+-   **统计工具**: 51.la 统计 / 不蒜子
+-   **其他**:
+    -   动态运行时间计算
+    -   本地存储实现主题记忆
+    -   移动端适配 (响应式设计)
 
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+## 🚀 快速开始
 
-## 🤝 贡献 / Contributing
+如果你想在本地运行或修改此项目，可以按照以下步骤操作：
 
-欢迎提交 Issue 和 Pull Request 来改进这个项目！
+### 环境要求
 
-Feel free to submit issues and pull requests to improve this project!
+-   现代浏览器 (Chrome, Firefox, Edge, Safari 等)
+-   (可选) 本地静态服务器，如 `Live Server` (用于开发调试)
 
-## 📄 许可证 / License
+## 🌐 SEO 优化状态
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+为了提升搜索引擎的收录和展现，本站已进行以下优化：
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+-   [x] **唯一标题**: 每个页面都有独立的 `<title>` 标签
+-   [x] **元描述**: 为每个页面撰写了详细的 `<meta description>`
+-   [x] **语义化HTML**: 使用 `<header>`, `<main>`, `<footer>` 等标签
+-   [x] **移动端友好**: 响应式设计，通过 Viewport 适配
+-   [x] **站点地图**: 已生成 `sitemap.xml` 并提交至各大搜索引擎
+-   [x] **Robots 文件**: 已配置 `robots.txt` 允许搜索引擎抓取
 
-## 📞 联系方式 / Contact
+**已提交的搜索引擎**: 百度 / 必应(Bing) / 360搜索
 
-- 📧 邮箱: psz0410@163.com
-- 🌐 网站: [https://www.nekt.qzz.io/](https://www.nekt.qzz.io/ "https://www.nekt.qzz.io/")
-- 💻 GitHub: [Nektropy](https://github.com/Nektropy)
-- 🐧 QQ: [点击联系](https://qm.qq.com/cgi-bin/qm/qr?k=3977278530)
+## 📝 待办列表 / 未来计划
 
-## 🎯 更新日志 / Changelog
+-   [ ] 添加更多趣味性的小工具页面
+-   [ ] 优化页面加载性能 
+-   [ ] 优化博客系统，持续上传文章 (可能切换框架)
+-   [ ] 进一步优化移动端触摸体验
 
-### v2.1.0 (2026-02-02)
-- 初始版本发布
-- 实现基本名片功能
-- 添加深色模式支持
-- 集成访问统计和名言API
+## 📜 版权与许可证
+
+-   **内容**: 个人介绍、头像等原创内容版权所有 © 2026 熵。
+-   **API**: 每日一言接口来源于 [hitokoto.cn](https://hitokoto.cn)，请遵循其相关使用条款。
+
+## 📬 联系我
+
+-   邮箱: psz0410@163.com
+-   GitHub: [@Nektropy](https://github.com/Nektropy)
+-   QQ: [点击联系](https://qm.qq.com/cgi-bin/qm/qr?k=3977278530)
 
 ---
 
-**保持好奇心，探索未知**  
-**Stay curious, explore the unknown**
-
-⭐ 如果这个项目对你有帮助，请给个星标！  
-⭐ If this project helps you, please give it a star!
+**如果觉得这个项目还不错，欢迎给个 ⭐️ Star 支持一下！**
