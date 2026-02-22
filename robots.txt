@@ -1,0 +1,7 @@
+# 允许所有搜索引擎抓取
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /private/
+
+# 告诉搜索引擎我的站点地图的位置
+Sitemap: https://www.nekt.qzz.io/sitemap.xml
