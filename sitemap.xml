@@ -6,7 +6,7 @@
   <!-- 主站页面 -->
   <url>
     <loc>https://www.nekt.qzz.io/</loc>
-    <lastmod>2026-02-15</lastmod>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
@@ -22,7 +22,7 @@
     <loc>https://www.nekt.qzz.io/blog/index.html</loc>
     <lastmod>2026-02-15</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.97</priority>
+    <priority>0.88</priority>
   </url>
 
   <url>
