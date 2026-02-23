@@ -3291,3 +3291,55 @@ pre {
     transform: translateY(-2px) !important;
     box-shadow: 0 10px 30px rgba(58, 134, 255, 0.3) !important;
 }
+
+/*彩虹链接样式*/
+.rainbow-link {
+/* 基础字体样式 - 你可根据需要修改 */
+font-size: 2.5rem;          /* 推荐大小，可按需调整 */
+font-weight: 900;
+text-decoration: none;
+letter-spacing: 2px;
+text-transform: uppercase;
+
+/* 彩虹渐变核心：7色经典彩虹 */
+background: linear-gradient(
+90deg,
+#ff3b3b,    /* 红 */
+#ff8c42,    /* 橙 */
+#f9d849,    /* 黄 */
+#6bdb7c,    /* 绿 */
+#3ca0ff,    /* 蓝 */
+#8a6de9,    /* 靛紫 */
+#ff66b2     /* 粉紫 */
+);
+background-size: 400% auto;        /* 扩大背景，让位移更流畅 */
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent;                 /* 文字透明，显示背景渐变 */
+
+/* 动画与过渡 */
+animation: rainbowShift 4s infinite ease-in-out;
+transition: all 0.25s ease-out;
+display: inline-block;              /* 保证transform生效 */
+}
+
+/* 彩虹流动动画 */
+@keyframes rainbowShift {
+0% { background-position: 0% 50%; }
+25% { background-position: 50% 50%; }
+50% { background-position: 100% 50%; }
+75% { background-position: 50% 50%; }
+100% { background-position: 0% 50%; }
+}
+
+/* 悬停效果 —— 加快动画、放大、增加亮度感 */
+.rainbow-link:hover {
+animation: rainbowShift 1.2s infinite linear;
+transform: scale(1.08);
+text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+/* 点击反馈 */
+.rainbow-link:active {
+transform: scale(0.96);
+}
