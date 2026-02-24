@@ -33,13 +33,31 @@ html {
     scroll-behavior: smooth;
 }
 
+/* 基础样式：适用于所有设备 */
 body {
-    background: url('/img/bg.jpg') center/cover fixed;
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
-    position: relative;
+    position: relative; /* 为伪元素提供参考 */
     overflow-x: hidden;
+
+    /* 将 cover 和 fixed 属性拆开写，避免重复 */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 保留视差效果 */
+    background-repeat: no-repeat;
+}
+
+/* 默认（电脑端）背景图 */
+body {
+    background-image: url('https://img.mxw2024.top/bg-pc.webp');
+}
+
+/* 手机端：当屏幕宽度小于或等于 768px 时切换 */
+@media (max-width: 768px) {
+    body {
+        background-image: url('https://img.mxw2024.top/bg-mobile.webp');
+    }
 }
 
 body::after {
@@ -49,7 +67,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3); /* 这里的透明度可以保持不变或微调 */
     z-index: -2;
 }
 
