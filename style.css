@@ -3361,3 +3361,65 @@ text-shadow: 0 0 20px rgba(255,255,255,0.5);
 .rainbow-link:active {
 transform: scale(0.96);
 }
+
+/*公告栏*/
+.announcement-container {
+width: 100%;
+display: flex;
+justify-content: center;
+padding: 10px 0;
+}
+
+.announcement-bar {
+width: 80%;
+height: 40px;
+background: rgba(255, 255, 255, 0.3);
+border-radius: 8px;
+overflow: hidden;
+position: relative;
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.2);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+display: flex;
+align-items: center;
+}
+
+.announcement-icon {
+padding: 0 12px;
+font-size: 18px;
+color: #ff6b35;
+}
+
+.scroll-wrapper {
+flex: 1;
+overflow: hidden;
+position: relative;
+height: 100%;
+}
+
+.scroll-text {
+position: absolute;
+white-space: nowrap;
+top: 50%;
+transform: translateY(-50%);
+animation: scroll-left 15s linear infinite;
+font-size: 16px;
+color: #333;
+font-weight: 500;
+padding-left: 100%;
+}
+
+@keyframes scroll-left {
+0% {
+transform: translateY(-50%) translateX(0);
+}
+100% {
+transform: translateY(-50%) translateX(-100%);
+}
+}
+
+/* 悬停暂停效果 */
+.announcement-bar:hover .scroll-text {
+animation-play-state: paused;
+}
