@@ -2686,7 +2686,7 @@ body::after {
 
 .reaction-count {
     font-size: 0.8rem;
-    color: #999;
+    color: #000;
     background: rgba(0,0,0,0.05);
     padding: 3px 10px;
     border-radius: 12px;
