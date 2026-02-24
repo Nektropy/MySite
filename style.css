@@ -2460,7 +2460,7 @@ body::after {
 
 .recent-comment-time {
     font-size: 0.75rem;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(200, 200, 200, 0.4);
 }
 
 .recent-comment-text {
