@@ -2465,7 +2465,7 @@ body::after {
 
 .recent-comment-text {
     font-size: 0.85rem;
-    color: #555;
+    color: #aaa;
     line-height: 1.5;
     overflow: hidden;
     text-overflow: ellipsis;
