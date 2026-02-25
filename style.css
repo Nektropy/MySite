@@ -2460,12 +2460,12 @@ body::after {
 
 .recent-comment-time {
     font-size: 0.75rem;
-    color: rgba(200, 200, 200, 0.4);
+    color: rgba(0, 0, 0, 0.45);
 }
 
 .recent-comment-text {
     font-size: 0.85rem;
-    color: #fff;
+    color: #1a1a1a;
     line-height: 1.5;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2807,7 +2807,7 @@ body::after {
 
 .recent-comment-text {
     font-size: 0.85rem;
-    color: #555;
+    color: #1a1a1a;
     line-height: 1.5;
     overflow: hidden;
     text-overflow: ellipsis;
