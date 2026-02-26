@@ -50,13 +50,13 @@ body {
 
 /* 默认（电脑端）背景图 */
 body {
-    background-image: url(http://img.mxw2024.top/bg-pc.webp');
+    background-image: url(/img/bg-pc.webp');
 }
 
 /* 手机端：当屏幕宽度小于或等于 768px 时切换 */
 @media (max-width: 768px) {
     body {
-        background-image: url('http://img.mxw2024.top/bg-mobile.webp');
+        background-image: url('/img/bg-mobile.webp');
     }
 }
 
