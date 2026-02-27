@@ -10,21 +10,34 @@
         const loader = document.getElementById('pageLoader');
         if (!loader) return;
         
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                setTimeout(() => {
-                    loader.remove();
-                }, 500);
-            }, 500);
-        });
+        // 检查是否是首次访问
+        const hasVisited = localStorage.getItem('visited');
         
-        setTimeout(() => {
-            if (loader.parentNode) {
-                loader.classList.add('hidden');
-                setTimeout(() => loader.remove(), 500);
-            }
-        }, 3000);
+        if (!hasVisited) {
+            // 首次访问，显示加载动画
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    setTimeout(() => {
+                        loader.remove();
+                    }, 500);
+                }, 500);
+            });
+            
+            setTimeout(() => {
+                if (loader.parentNode) {
+                    loader.classList.add('hidden');
+                    setTimeout(() => loader.remove(), 500);
+                }
+            }, 3000);
+            
+            // 设置访问标记
+            localStorage.setItem('visited', 'true');
+        } else {
+            // 非首次访问，直接隐藏加载动画
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 100);
+        }
     }
 
     // 初始化侧边栏
@@ -211,17 +224,35 @@
     // 卡片入场动画
     function initAnimations() {
         const cards = document.querySelectorAll('.card');
-        cards.forEach((card, i) => {
+        
+        // 使用 Intersection Observer 实现更平滑的滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // 使用 requestAnimationFrame 确保动画在浏览器渲染周期中执行
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 40); // 更短的延迟，使动画更连贯
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.05, // 更早触发动画
+            rootMargin: '0px 0px -100px 0px' // 更大的触发区域
+        });
+        
+        cards.forEach(card => {
             card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                card.style.transition = 'opacity 0.5s, transform 0.5s';
-                card.style.opacity = '1';
-                card.style.transform = '';
-            }, i * 80);
+            card.style.transform = 'translateY(25px)';
+            card.style.transition = 'opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            observer.observe(card);
         });
 
         document.querySelectorAll('.skill, .hobby').forEach(tag => {
+            tag.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             tag.addEventListener('mouseenter', function() {
                 this.style.transform = 'scale(1.05)';
             });

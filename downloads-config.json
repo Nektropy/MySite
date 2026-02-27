@@ -1,0 +1,61 @@
+{
+  "folders": [
+    {
+      "name": "软件工具",
+      "files": [
+        {
+          "name": "压缩软件.zip",
+          "size": "15MB",
+          "type": "file",
+          "link": "https://pan.baidu.com/s/1234567890",
+          "code": "abc123"
+        },
+        {
+          "name": "浏览器插件.crx",
+          "size": "5MB",
+          "type": "file",
+          "link": "https://pan.baidu.com/s/0987654321",
+          "code": "def456"
+        },
+        {
+          "name": "系统工具.exe",
+          "size": "20MB",
+          "type": "file",
+          "link": "https://pan.baidu.com/s/1357924680",
+          "code": "ghi789"
+        }
+      ]
+    },
+    {
+      "name": "学习资料",
+      "files": [
+        {
+          "name": "Python教程.pdf",
+          "size": "50MB",
+          "type": "pdf",
+          "link": "https://pan.baidu.com/s/2468135790",
+          "code": "jkl012"
+        },
+        {
+          "name": "算法笔记.zip",
+          "size": "30MB",
+          "type": "file",
+          "link": "https://pan.baidu.com/s/3579246810",
+          "code": "mno345"
+        }
+      ]
+    },
+    {
+      "name": "游戏资源",
+      "files": [
+        {
+          "name": "独立游戏合集.zip",
+          "size": "1GB",
+          "type": "file",
+          "link": "https://pan.baidu.com/s/4681357920",
+          "code": "pqr678"
+        }
+      ]
+    }
+  ]
+}

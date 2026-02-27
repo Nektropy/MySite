@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载站 | 熵的小站</title>
+    <meta name="description" content="熵的小站下载站，提供各类资源的网盘下载">
+    <meta name="keywords" content="下载站,网盘下载,资源下载,熵的小站">
+    <meta name="author" content="熵">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="icon" href="/img/head.webp">
+
+    <!-- 样式表 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">正在加载...</p>
+        </div>
+    </div>
+
+    <!-- 预连接优化 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu">
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="index.html" class="menu-item">
+                <i class="fas fa-home"></i>
+                <span>返回首页</span>
+            </a>
+            <a href="friends.html" class="menu-item">
+                <i class="fas fa-link"></i>
+                <span>友情链接</span>
+            </a>
+            <a href="divination.html" class="menu-item" target="_self">
+                <i class="fas fa-yin-yang"></i>
+                <span>赛博算卦</span>
+            </a>
+            <a href="websites.html" class="menu-item" target="_self">
+                <i class="fa-solid fa-book-bookmark"></i>
+                <span>实用站点</span>
+            </a>
+            <a href="downloads.html" class="menu-item" target="_self">
+                <i class="fas fa-download"></i>
+                <span>下载站</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- 电脑端左侧固定菜单 -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-inner">
+            <div class="sidebar-header">
+                <div class="sidebar-brand">
+                    <i class="fas fa-compass"></i>
+                    <span class="brand-text">导航</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle" title="收起菜单">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-home"></i></div>
+                    <span class="nav-text">首页</span>
+                </a>
+                <a href="friends.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-link"></i></div>
+                    <span class="nav-text">友情链接</span>
+                </a>
+                <a href="/divination.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-yin-yang"></i></div>
+                    <span class="nav-text">赛博算卦</span>
+                </a>
+                <a href="/websites.html" class="nav-link">
+                    <div class="nav-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <span class="nav-text">实用站点</span>
+                </a>
+                <a href="/downloads.html" class="nav-link active">
+                    <div class="nav-icon"><i class="fas fa-download"></i></div>
+                    <span class="nav-text">下载站</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="footer-line"></div>
+                <p class="footer-text">© 2026 熵</p>
+            </div>
+        </div>
+    </aside>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <div class="theme-switcher" id="themeSwitcher" title="切换主题">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="header">
+                <h1>下载站</h1>
+                <p>文件系统风格的资源下载</p>
+            </header>
+
+            <div class="cards-container">
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3 class="card-title"><i class="fas fa-folder-tree"></i>资源目录</h3>
+                    <div class="file-system">
+                        <!-- 根目录 -->
+                        <div class="file-system-root" id="fileSystemRoot">
+                            <!-- 资源将通过JavaScript从JSON配置文件加载 -->
+                            <div class="loading">
+                                <div class="loader-spinner"></div>
+                                <p>加载资源中...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-text">
+                    <p>© 2026 熵 · 保持好奇心，探索未知</p>
+                </div>
+                <div class="icp-container">
+                    <a class="icp-link" href="https://icp.gov.moe/?keyword=20266006" target="_blank">萌ICP备20266006号</a> | 
+                    <a class="icp-link" href="https://icp.hentioe.dev/sites/20264651" target="_blank">喵ICP备20264651号</a>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- 下载选项模态框 -->
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalFileName">文件下载</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>请选择下载方式：</p>
+                <div class="download-options">
+                    <a href="" id="baiduPanLink" class="download-option" target="_blank">
+                        <i class="fas fa-cloud"></i>
+                        <span>百度网盘</span>
+                    </a>
+                    <div class="extraction-code" id="extractionCode">
+                        <strong>提取码：</strong>
+                        <span id="codeValue"></span>
+                        <button class="copy-btn" onclick="copyCode()">复制</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-close-btn" onclick="closeModal()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="config.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // 页面加载完成后加载资源
+        document.addEventListener('DOMContentLoaded', function() {
+            loadResources();
+        });
+
+        // 从JSON配置文件加载资源
+        function loadResources() {
+            fetch('downloads-config.json')
+                .then(response => response.json())
+                .then(data => {
+                    renderResources(data.folders);
+                })
+                .catch(error => {
+                    console.error('加载资源失败:', error);
+                    document.getElementById('fileSystemRoot').innerHTML = '<div class="error">加载资源失败，请检查配置文件</div>';
+                });
+        }
+
+        // 渲染资源
+        function renderResources(folders) {
+            const root = document.getElementById('fileSystemRoot');
+            root.innerHTML = '';
+
+            folders.forEach((folder, index) => {
+                const folderElement = document.createElement('div');
+                folderElement.className = 'folder-item';
+                
+                const folderHeader = document.createElement('div');
+                folderHeader.className = 'folder-header';
+                folderHeader.onclick = function() { toggleFolder(this); };
+                
+                const folderIcon = document.createElement('i');
+                folderIcon.className = index === 0 ? 'fas fa-folder-open' : 'fas fa-folder';
+                
+                const folderName = document.createElement('span');
+                folderName.className = 'folder-name';
+                folderName.textContent = folder.name;
+                
+                const folderSize = document.createElement('span');
+                folderSize.className = 'folder-size';
+                folderSize.textContent = `${folder.files.length}个文件`;
+                
+                folderHeader.appendChild(folderIcon);
+                folderHeader.appendChild(folderName);
+                folderHeader.appendChild(folderSize);
+                
+                const folderContent = document.createElement('div');
+                folderContent.className = 'folder-content';
+                if (index !== 0) {
+                    folderContent.style.display = 'none';
+                }
+                
+                // 添加文件
+                folder.files.forEach(file => {
+                    const fileElement = document.createElement('div');
+                    fileElement.className = 'file-item';
+                    
+                    const fileIcon = document.createElement('i');
+                    fileIcon.className = file.type === 'pdf' ? 'fas fa-file-pdf' : 'fas fa-file';
+                    
+                    const fileName = document.createElement('span');
+                    fileName.className = 'file-name';
+                    fileName.textContent = file.name;
+                    
+                    const fileSize = document.createElement('span');
+                    fileSize.className = 'file-size';
+                    fileSize.textContent = file.size;
+                    
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = '#';
+                    downloadLink.className = 'download-link';
+                    downloadLink.onclick = function() {
+                        showDownloadOptions(file.name, file.link, `提取码: ${file.code}`);
+                    };
+                    
+                    const downloadIcon = document.createElement('i');
+                    downloadIcon.className = 'fas fa-download';
+                    
+                    const downloadText = document.createTextNode(' 下载');
+                    
+                    downloadLink.appendChild(downloadIcon);
+                    downloadLink.appendChild(downloadText);
+                    
+                    fileElement.appendChild(fileIcon);
+                    fileElement.appendChild(fileName);
+                    fileElement.appendChild(fileSize);
+                    fileElement.appendChild(downloadLink);
+                    
+                    folderContent.appendChild(fileElement);
+                });
+                
+                folderElement.appendChild(folderHeader);
+                folderElement.appendChild(folderContent);
+                
+                root.appendChild(folderElement);
+            });
+        }
+
+        // 文件夹展开/收起功能
+        function toggleFolder(element) {
+            const folderContent = element.nextElementSibling;
+            const folderIcon = element.querySelector('i');
+            
+            if (folderContent.style.display === 'none') {
+                folderContent.style.display = 'block';
+                folderIcon.className = 'fas fa-folder-open';
+            } else {
+                folderContent.style.display = 'none';
+                folderIcon.className = 'fas fa-folder';
+            }
+        }
+
+        // 显示下载选项模态框
+        function showDownloadOptions(fileName, panLink, extractionCode) {
+            document.getElementById('modalFileName').textContent = fileName;
+            document.getElementById('baiduPanLink').href = panLink;
+            document.getElementById('codeValue').textContent = extractionCode.split(': ')[1];
+            document.getElementById('downloadModal').style.display = 'block';
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('downloadModal').style.display = 'none';
+        }
+
+        // 复制提取码
+        function copyCode() {
+            const code = document.getElementById('codeValue').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('提取码已复制到剪贴板');
+            });
+        }
+
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modal = document.getElementById('downloadModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

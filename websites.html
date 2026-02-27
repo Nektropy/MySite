@@ -40,6 +40,10 @@
                 <i class="fa-solid fa-book-bookmark"></i>
                 <span>实用站点</span>
             </a>
+            <a href="downloads.html" class="menu-item" target="_self">
+                <i class="fas fa-download"></i>
+                <span>下载站</span>
+            </a>
         </div>
     </div>
     
@@ -73,6 +77,10 @@
                     <div class="nav-icon"><i class="fa-solid fa-book-bookmark"></i></div>
                     <span class="nav-text">实用站点</span>
                 </a>
+                <a href="downloads.html" class="nav-link">
+                    <div class="nav-icon"><i class="fas fa-download"></i></div>
+                    <span class="nav-text">下载站</span>
+                </a>
             </nav>
             
             <div class="sidebar-footer">
@@ -95,52 +103,14 @@
                 <p>精选各类实用网站，提升你的上网体验</p>
             </header>
 
-                <div class="card">
-                    <h3 class="card-title"><i class="fa-solid fa-flag"></i>免费软件</h3>
-                    <div class="websites-list">
-                        <a href="https://www.gameshare.cc" target="_blank" class="website-item">
-                            <div class="website-icon"><img src="https://www.gameshare.cc/favicon.ico"></img></div>
-                            <div class="website-info">
-                                <h4>GameShare</h4>
-                                <p>游戏分享社区</p>
-                            </div>
-                        </a>
-                    </div>
-					<div class="websites-list">
-                        <a href="https://getr.top" target="_blank" class="website-item">
-                            <div class="website-icon"><img src="https://getr.top/favicon.ico"></img></div>
-                            <div class="website-info">
-                                <h4>Get软件库</h4>
-                                <p>办公软件下载</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>           
-
-                <div class="card">
-                    <h3 class="card-title"><i class="fa-solid fa-flag"></i>在线游戏</h3>
-                    <div class="websites-list">
-                        <a href="https://poki.com/zh" target="_blank" class="website-item">
-                            <div class="website-icon"><img src="https://a.poki-cdn.com/icons/favicon-32x32.png"></img></div>
-                            <div class="website-info">
-                                <h4>Poki-宝玩</h4>
-                                <p>免费在线小游戏中心</p>
-                            </div>
-                        </a>
-                    </div>
-					<div class="websites-list">
-                        <a href="https://eaglercraft.ir/zh" target="_blank" class="website-item">
-                            <div class="website-icon"><img src="https://eaglercraft.ir/favicon.ico"></img></div>
-                            <div class="website-info">
-                                <h4>Eaglercraft.ir</h4>
-                                <p>在浏览器中免费玩Minecraft</p>
-                            </div>
-                        </a>
+                <div class="cards-container" id="websitesContainer">
+                    <!-- 内容将通过JavaScript从JSON配置文件加载 -->
+                    <div class="loading">
+                        <div class="loader-spinner"></div>
+                        <p>加载站点中...</p>
                     </div>
                 </div>
-				
             </div>
-</div>
 
 <footer class="footer">
     <div class="footer-text">
@@ -157,5 +127,87 @@
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script src="config.js"></script>
     <script src="main.js"></script>
+    <script>
+        // 页面加载完成后加载站点
+        document.addEventListener('DOMContentLoaded', function() {
+            loadWebsites();
+        });
+
+        // 从JSON配置文件加载站点
+        function loadWebsites() {
+            fetch('websites-config.json')
+                .then(response => response.json())
+                .then(data => {
+                    renderWebsites(data.categories);
+                })
+                .catch(error => {
+                    console.error('加载站点失败:', error);
+                    document.getElementById('websitesContainer').innerHTML = '<div class="error">加载站点失败，请检查配置文件</div>';
+                });
+        }
+
+        // 渲染站点
+        function renderWebsites(categories) {
+            const container = document.getElementById('websitesContainer');
+            container.innerHTML = '';
+
+            categories.forEach(category => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                const cardTitle = document.createElement('h3');
+                cardTitle.className = 'card-title';
+                
+                const icon = document.createElement('i');
+                icon.className = category.icon;
+                
+                const titleText = document.createTextNode(' ' + category.name);
+                
+                cardTitle.appendChild(icon);
+                cardTitle.appendChild(titleText);
+                
+                const websitesList = document.createElement('div');
+                websitesList.className = 'websites-list';
+                
+                category.websites.forEach(website => {
+                    const websiteItem = document.createElement('a');
+                    websiteItem.href = website.url;
+                    websiteItem.target = '_blank';
+                    websiteItem.className = 'website-item';
+                    
+                    const websiteIcon = document.createElement('div');
+                    websiteIcon.className = 'website-icon';
+                    
+                    const favicon = document.createElement('img');
+                    favicon.src = website.favicon;
+                    favicon.alt = website.name;
+                    
+                    websiteIcon.appendChild(favicon);
+                    
+                    const websiteInfo = document.createElement('div');
+                    websiteInfo.className = 'website-info';
+                    
+                    const websiteName = document.createElement('h4');
+                    websiteName.textContent = website.name;
+                    
+                    const websiteDesc = document.createElement('p');
+                    websiteDesc.textContent = website.description;
+                    
+                    websiteInfo.appendChild(websiteName);
+                    websiteInfo.appendChild(websiteDesc);
+                    
+                    websiteItem.appendChild(websiteIcon);
+                    websiteItem.appendChild(websiteInfo);
+                    
+                    websitesList.appendChild(websiteItem);
+                });
+                
+                card.appendChild(cardTitle);
+                card.appendChild(websitesList);
+                
+                container.appendChild(card);
+            });
+        }
+    </script>
 </body>
 </html>

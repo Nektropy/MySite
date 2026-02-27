@@ -80,6 +80,10 @@ body::after {
     width: var(--sidebar-width);
     z-index: 1000;
     transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backface-visibility: hidden;
+    will-change: width;
+    transform: translateZ(0);
 }
 
 .sidebar.no-transition {
@@ -288,11 +292,13 @@ body::after {
     border-radius: 12px;
     color: var(--text-sub);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     white-space: nowrap;
     border: 1px solid transparent;
+    backface-visibility: hidden;
+    will-change: transform, background-color;
 }
 
 .nav-link::before {
@@ -518,12 +524,16 @@ body::after {
     border-radius: 24px;  /* 24px */
     box-shadow: var(--shadow);
     padding: 32px;  /* 32px */
-    transition: var(--trans);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    backface-visibility: hidden;
+    will-change: transform, box-shadow, border-color;
+    transform: translateZ(0);
 }
 
 .card:hover {
-    transform: translateY(-6px);  /* -6px */
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);  /* 增强阴影效果 */
+    transform: translateY(-8px);  /* -8px */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);  /* 增强阴影效果 */
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .profile-card {
@@ -2802,12 +2812,12 @@ body::after {
 
 .recent-comment-time {
     font-size: 0.75rem;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .recent-comment-text {
     font-size: 0.85rem;
-    color: #555;
+    color: #fff;
     line-height: 1.5;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -3147,6 +3157,373 @@ body::after {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* ========== 下载站样式 ==========
+
+/* 文件系统样式 */
+.file-system {
+    margin-top: 20px;
+}
+
+.folder-item {
+    margin-bottom: 10px;
+}
+
+.folder-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 10px;
+}
+
+.folder-header:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateX(5px);
+}
+
+.folder-header i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.folder-name {
+    flex: 1;
+    font-weight: 500;
+}
+
+.folder-size {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+}
+
+.folder-content {
+    margin-left: 30px;
+    margin-top: 8px;
+    padding-left: 16px;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    gap: 10px;
+}
+
+.file-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.file-item i {
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.file-name {
+    flex: 1;
+}
+
+.file-size {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-right: 15px;
+}
+
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(58, 134, 255, 0.8), rgba(131, 56, 236, 0.8));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.download-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(58, 134, 255, 0.4);
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    margin: 15% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+    color: var(--primary);
+    margin: 0;
+}
+
+.modal-close {
+    color: var(--text-sub);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.download-options {
+    margin-top: 15px;
+}
+
+.download-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.download-option:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.download-option i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.extraction-code {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.extraction-code strong {
+    color: var(--text-main);
+}
+
+.extraction-code span {
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.copy-btn {
+    padding: 6px 12px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.modal-footer {
+    text-align: right;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-close-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 深色模式下的下载站样式 */
+.dark-mode .folder-header {
+    background: rgba(30, 30, 40, 0.6);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .folder-header:hover {
+    background: rgba(40, 40, 50, 0.7);
+}
+
+.dark-mode .folder-content {
+    border-left-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .file-item {
+    background: rgba(30, 30, 40, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .file-item:hover {
+    background: rgba(40, 40, 50, 0.5);
+}
+
+.dark-mode .modal-content {
+    background: rgba(30, 30, 40, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .download-option {
+    background: rgba(30, 30, 40, 0.6);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .download-option:hover {
+    background: rgba(40, 40, 50, 0.7);
+}
+
+.dark-mode .extraction-code {
+    background: rgba(30, 30, 40, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .extraction-code span {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .folder-header {
+        padding: 10px 14px;
+    }
+    
+    .file-item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .file-size {
+        margin-right: 0;
+        flex-basis: 100%;
+    }
+    
+    .download-link {
+        padding: 8px 16px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .modal-content {
+        margin: 25% auto;
+        width: 95%;
+    }
+}
+
+/* 加载和错误状态样式 */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: var(--text-sub);
+    gap: 15px;
+}
+
+.loading .loader-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: loader-spin 1s linear infinite;
+}
+
+.error {
+    padding: 40px;
+    text-align: center;
+    color: #ff3b30;
+    background: rgba(255, 59, 48, 0.1);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.dark-mode .loading {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.dark-mode .loading .loader-spinner {
+    border-color: rgba(255, 255, 255, 0.2);
+    border-top-color: var(--primary);
+}
+
+.dark-mode .error {
+    color: #ff453a;
+    background: rgba(255, 69, 58, 0.1);
+    border-color: rgba(255, 69, 58, 0.2);
 }
 
 @keyframes fadeOut {
