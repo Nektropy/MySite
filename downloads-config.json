@@ -7,22 +7,20 @@
           "name": "via.apk",
           "size": "2.56MB",
           "type": "file",
-          "link": "https://pan.quark.cn/s/2921ac9120b7",
-          "code": "abc123"
+          "quark": "https://pan.quark.cn/s/2921ac9120b7"
         },
         {
           "name": "MT管理器.apk",
           "size": "27.4MB",
           "type": "file",
-          "link": "https://pan.quark.cn/s/ec03d64a52fa",
-          "code": "def456"
+          "quark": "https://pan.quark.cn/s/ec03d64a52fa"
         },
         {
           "name": "系统工具.exe",
           "size": "20MB",
           "type": "file",
-          "link": "https://pan.baidu.com/s/1357924680",
-          "code": "ghi789"
+          "baidu": "https://pan.baidu.com/s/1357924680",
+          "quark": "https://pan.quark.cn/s/1234567890"
         }
       ]
     },
@@ -33,15 +31,14 @@
           "name": "Python教程.pdf",
           "size": "50MB",
           "type": "pdf",
-          "link": "https://pan.baidu.com/s/2468135790",
-          "code": "jkl012"
+          "baidu": "https://pan.baidu.com/s/2468135790",
+          "quark": "https://pan.quark.cn/s/9876543210"
         },
         {
           "name": "算法笔记.zip",
           "size": "30MB",
           "type": "file",
-          "link": "https://pan.baidu.com/s/3579246810",
-          "code": "mno345"
+          "baidu": "https://pan.baidu.com/s/3579246810"
         }
       ]
     },
@@ -52,8 +49,8 @@
           "name": "独立游戏合集.zip",
           "size": "1GB",
           "type": "file",
-          "link": "https://pan.baidu.com/s/4681357920",
-          "code": "pqr678"
+          "baidu": "https://pan.baidu.com/s/4681357920",
+          "quark": "https://pan.quark.cn/s/5678901234"
         }
       ]
     }

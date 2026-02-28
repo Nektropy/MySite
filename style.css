@@ -399,7 +399,7 @@ body::after {
     display: none;
 }
 
-.footer-text {
+.sidebar-footer .footer-text {
     color: var(--text-sub);
     font-size: 0.8rem;
     text-align: center;
@@ -407,14 +407,10 @@ body::after {
     transition: all 0.3s ease;
     line-height: 1.4;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 8px;
-    backdrop-filter: blur(10px);
 }
 
 .sidebar-footer:hover .footer-text {
     color: #fff;
-    background: rgba(58, 134, 255, 0.1);
 }
 
 .sidebar.collapsed .footer-text {
@@ -590,6 +586,35 @@ body::after {
     background: #4cd964;
     border-radius: 50%;
     animation: pulse 2s infinite;
+}
+
+/* 头像卡片中的社交链接样式 */
+.profile-social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.profile-social-links .social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.profile-social-links .social-link:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
 }
 
 @keyframes pulse {
@@ -771,9 +796,19 @@ body::after {
 
 .quote-card {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(58, 134, 255, 0.1), rgba(131, 56, 236, 0.1));
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
     position: relative;
-    padding-top: 50px;
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.quote-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 .refresh-quote {
@@ -782,9 +817,9 @@ body::after {
     right: 16px;
     width: 36px;
     height: 36px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -795,11 +830,13 @@ body::after {
 
 .refresh-quote:hover {
     transform: rotate(180deg);
-    background: #fff;
+    background: var(--primary);
+    color: #fff;
 }
 
 .dark-mode .refresh-quote {
-    background: rgba(30, 30, 30, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .quote-text {
@@ -827,12 +864,20 @@ body::after {
 
 .visit-stats {
     background: var(--glass-bg);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    padding: 12px 24px;
+    border-radius: 24px;
+    padding: 20px 24px;
     display: inline-flex;
     gap: 24px;
     margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.visit-stats:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 .stat-item {
@@ -882,14 +927,22 @@ body::after {
 
 .cooperators {
     margin: 20px auto;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    padding: 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
     text-align: center;
     max-width: 700px;
     width: fit-content;
     min-width: 280px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.cooperators:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 .coop-label {
@@ -938,51 +991,21 @@ body::after {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.dark-mode .cooperators {
-    background: rgba(30, 30, 40, 0.4);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .coop-list a {
-    background: rgba(30, 30, 40, 0.5);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .coop-list a:hover {
-    background: rgba(40, 40, 50, 0.7);
-    border-color: var(--primary);
-}
-
-@media (max-width: 768px) {
-    .cooperators {
-        padding: 12px;
-        max-width: 90%;
-        margin: 15px auto;
-    }
-    
-    .coop-list {
-        gap: 10px;
-    }
-    
-    .coop-list a {
-        padding: 8px 14px;
-        font-size: 0.85rem;
-        gap: 6px;
-    }
-    
-    .coop-avatar {
-        width: 18px;
-        height: 18px;
-    }
-}
-
 .footer-friends {
     margin: 20px 0;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
     text-align: center;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.footer-friends:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 .footer-friends-title {
@@ -1028,24 +1051,35 @@ body::after {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.dark-mode .footer-friends {
-    background: rgba(30, 30, 40, 0.4);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .footer-friend-item {
-    background: rgba(30, 30, 40, 0.5);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .footer-friend-item:hover {
-    background: rgba(40, 40, 50, 0.7);
-    border-color: var(--primary);
-}
-
 @media (max-width: 768px) {
+    .visit-stats {
+        padding: 16px 20px;
+        gap: 16px;
+    }
+    
+    .cooperators {
+        padding: 20px;
+        max-width: 90%;
+        margin: 15px auto;
+    }
+    
+    .coop-list {
+        gap: 10px;
+    }
+    
+    .coop-list a {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        gap: 6px;
+    }
+    
+    .coop-avatar {
+        width: 18px;
+        height: 18px;
+    }
+    
     .footer-friends {
-        padding: 15px;
+        padding: 20px;
         max-width: 90%;
         margin: 15px auto;
     }
@@ -1084,6 +1118,290 @@ body::after {
 
 .icp-link:hover {
     color: var(--primary);
+}
+
+/* 文件系统样式 */
+.file-system {
+    margin-top: 20px;
+}
+
+.folder-item {
+    margin-bottom: 15px;
+}
+
+.folder-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.folder-header:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.folder-header i {
+    margin-right: 12px;
+    color: var(--primary);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.folder-name {
+    flex: 1;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.folder-size {
+    color: var(--text-sub);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.folder-content {
+    margin-left: 24px;
+    margin-top: 10px;
+    padding-left: 16px;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.file-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.file-item i {
+    margin-right: 12px;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.file-name {
+    flex: 1;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-size {
+    color: var(--text-sub);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    margin-left: 10px;
+    background: var(--primary);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.download-link:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.download-link i {
+    margin-right: 6px;
+    color: white;
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    margin: 15% auto;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--shadow);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+    color: var(--text-main);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.modal-close {
+    color: var(--text-sub);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: var(--text-main);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-body p {
+    color: var(--text-sub);
+    margin-bottom: 16px;
+}
+
+.download-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.download-option {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.download-option:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.download-option i {
+    margin-right: 12px;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.extraction-code {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.extraction-code strong {
+    color: var(--text-main);
+}
+
+.extraction-code span {
+    color: var(--primary);
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.copy-btn {
+    padding: 4px 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: var(--secondary);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-close-btn {
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: var(--text-sub);
+}
+
+.error {
+    padding: 40px;
+    text-align: center;
+    color: var(--accent);
 }
 
 /* ========== 移动端适配 ========== */
@@ -1220,6 +1538,30 @@ body::after {
     
     .sidebar-overlay.show {
         display: block;
+    }
+    
+    /* 移动端文件列表样式 */
+    .file-item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .file-name {
+        flex: 1 1 calc(100% - 120px);
+        min-width: 0;
+    }
+    
+    .file-size {
+        flex: 1 1 auto;
+        margin-left: 0;
+        margin-right: 10px;
+    }
+    
+    .download-link {
+        flex: 1 1 100%;
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 8px;
     }
 }
 

@@ -151,16 +151,8 @@
             </div>
             <div class="modal-body">
                 <p>请选择下载方式：</p>
-                <div class="download-options">
-                    <a href="" id="baiduPanLink" class="download-option" target="_blank">
-                        <i class="fas fa-cloud"></i>
-                        <span>百度网盘</span>
-                    </a>
-                    <div class="extraction-code" id="extractionCode">
-                        <strong>提取码：</strong>
-                        <span id="codeValue"></span>
-                        <button class="copy-btn" onclick="copyCode()">复制</button>
-                    </div>
+                <div class="download-options" id="downloadOptions">
+                    <!-- 下载选项将通过JavaScript动态生成 -->
                 </div>
             </div>
             <div class="modal-footer">
@@ -245,7 +237,7 @@
                     downloadLink.href = '#';
                     downloadLink.className = 'download-link';
                     downloadLink.onclick = function() {
-                        showDownloadOptions(file.name, file.link, `提取码: ${file.code}`);
+                        showDownloadOptions(file);
                     };
                     
                     const downloadIcon = document.createElement('i');
@@ -286,24 +278,37 @@
         }
 
         // 显示下载选项模态框
-        function showDownloadOptions(fileName, panLink, extractionCode) {
-            document.getElementById('modalFileName').textContent = fileName;
-            document.getElementById('baiduPanLink').href = panLink;
-            document.getElementById('codeValue').textContent = extractionCode.split(': ')[1];
+        function showDownloadOptions(file) {
+            document.getElementById('modalFileName').textContent = file.name;
+            const downloadOptions = document.getElementById('downloadOptions');
+            downloadOptions.innerHTML = '';
+            
+            // 添加百度网盘链接
+            if (file.baidu) {
+                const baiduOption = document.createElement('a');
+                baiduOption.href = file.baidu;
+                baiduOption.className = 'download-option';
+                baiduOption.target = '_blank';
+                baiduOption.innerHTML = '<i class="fas fa-cloud"></i><span>百度网盘</span>';
+                downloadOptions.appendChild(baiduOption);
+            }
+            
+            // 添加夸克网盘链接
+            if (file.quark) {
+                const quarkOption = document.createElement('a');
+                quarkOption.href = file.quark;
+                quarkOption.className = 'download-option';
+                quarkOption.target = '_blank';
+                quarkOption.innerHTML = '<i class="fas fa-cloud-download-alt"></i><span>夸克网盘</span>';
+                downloadOptions.appendChild(quarkOption);
+            }
+            
             document.getElementById('downloadModal').style.display = 'block';
         }
 
         // 关闭模态框
         function closeModal() {
             document.getElementById('downloadModal').style.display = 'none';
-        }
-
-        // 复制提取码
-        function copyCode() {
-            const code = document.getElementById('codeValue').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                alert('提取码已复制到剪贴板');
-            });
         }
 
         // 点击模态框外部关闭
