@@ -1,4 +1,18 @@
 /* style.css */
+@font-face {
+    font-family: 'Digital-Play-Italic-St-1';
+    src: url('fonts/Digital-Play-Italic-St-1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'faken';
+    src: url('fonts/faken.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -852,6 +866,12 @@ body::after {
     text-align: right;
     color: var(--text-sub);
     font-size: 0.9rem;
+}
+
+/* 时钟字体样式 */
+.clock-font {
+    font-family: 'Digital-Play-Italic-St-1', 'Courier New', monospace;
+    font-weight: bold;
 }
 
 /* ========== 页脚 ========== */

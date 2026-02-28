@@ -123,6 +123,24 @@
     function initTimeCalc() {
         const startDate = new Date('2026-01-23T21:12:00');
         
+        function getFormattedTime(currentDate) {
+            return currentDate.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+            }).replace(/:/g, ' : ');
+        }
+        
+        function getFormattedDate(currentDate) {
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+            const day = String(currentDate.getDate()).padStart(2, '0');
+            const weekday = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][currentDate.getDay()];
+            
+            return `${year} 年 ${month} 月 ${day} 日 ${weekday}`;
+        }
+        
         function update() {
             const now = new Date();
             const diff = now - startDate;
@@ -132,14 +150,16 @@
             const mins = Math.floor((diff % 3600000) / 60000);
             const secs = Math.floor((diff % 60000) / 1000);
             
-            const runEl = document.getElementById('site-running-time');
-            if (runEl) runEl.textContent = `${days}天 ${hours}时 ${mins}分 ${secs}秒`;
+            const daysEl = document.getElementById('site-running-days');
+            const timeEl = document.getElementById('site-running-time');
+            if (daysEl) daysEl.textContent = `${days} 天`;
+            if (timeEl) timeEl.textContent = `${hours.toString().padStart(2, '0')} : ${mins.toString().padStart(2, '0')} : ${secs.toString().padStart(2, '0')}`;
             
             const dateEl = document.getElementById('current-date');
-            const timeEl = document.getElementById('current-time');
-            if (dateEl && timeEl) {
-                dateEl.textContent = now.toLocaleDateString('zh-CN');
-                timeEl.textContent = now.toLocaleTimeString('zh-CN');
+            const currentTimeEl = document.getElementById('current-time');
+            if (dateEl && currentTimeEl) {
+                dateEl.textContent = getFormattedDate(now);
+                currentTimeEl.textContent = getFormattedTime(now);
             }
         }
 
