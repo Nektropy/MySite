@@ -18,6 +18,26 @@
         }
       ]
     },
+
+    {
+      "name": "在线工具",
+      "icon": "fa-solid fa-flag",
+      "websites": [
+        {
+          "name": "Desmos",
+          "description": "图形计算器",
+          "url": "https://www.desmos.com/calculator?lang=zh-CN",
+          "favicon": "https://www.desmos.com/favicon.ico"
+        },
+        {
+          "name": "16型人格",
+          "description": "免费人格测试",
+          "url": "https://www.16personalities.com/ch",
+          "favicon": "https://https://www.16personalities.com/favicon.ico"
+        }
+      ]
+    },
+
     {
       "name": "在线游戏",
       "icon": "fa-solid fa-flag",
