@@ -74,8 +74,14 @@ const friendsConfig = [
         url: "https://satinau.cn",
         avatar: "https://satinau.cn/favicon.ico",
         desc: "一只雪狐的摸鱼小站。"
-    }
+    },
 
+    {
+        name: "YororoIce Town",
+        url: "https://www.yororoice.top",
+        avatar: "#",
+        desc: "你好"
+    }
 ];
 
 // 合作配置
