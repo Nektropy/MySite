@@ -79,7 +79,7 @@ const friendsConfig = [
     {
         name: "YororoIce Town",
         url: "https://www.yororoice.top",
-        avatar: "#",
+        avatar: "https://pic4.zhimg.com/50/v2-6afa72220d29f045c15217aa6b275808_hd.jpg?source=1940ef5c",
         desc: "你好"
     }
 ];
