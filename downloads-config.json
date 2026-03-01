@@ -1,10 +1,10 @@
 {
   "folders": [
     {
-      "name": "软件工具",
+      "name": "手机工具",
       "files": [
         {
-          "name": "via.apk",
+          "name": "Via.apk",
           "size": "2.56MB",
           "type": "file",
           "quark": "https://pan.quark.cn/s/2921ac9120b7"
@@ -16,8 +16,38 @@
           "quark": "https://pan.quark.cn/s/ec03d64a52fa"
         },
         {
-          "name": "系统工具.exe",
-          "size": "20MB",
+          "name": "LocalSend.apk",
+          "size": "16.3MB",
+          "type": "file",
+          "quark": "https://pan.quark.cn/s/5177c4698ad4"
+        },
+        {
+          "name": "Seal.apk",
+          "size": "41MB",
+          "type": "file",
+          "quark": "https://pan.quark.cn/s/383afc7914c0"
+        },
+        {
+          "name": "Pydroid3.apk",
+          "size": "309MB",
+          "type": "file",
+          "quark": "https://pan.quark.cn/s/9bade86db0b4"
+        },
+        {
+          "name": "Cxxdroud.apk",
+          "size": "46.1MB",
+          "type": "file",
+          "quark": "https://pan.quark.cn/s/47a97ab1cb53"
+        },
+        {
+          "name": "Jvdroid.apk",
+          "size": "86.8MB",
+          "type": "file",
+          "quark": "https://pan.quark.cn/s/8b9bc855420d"
+        },
+        {
+          "name": "敬请期待",
+          "size": "未知",
           "type": "file",
           "baidu": "https://pan.baidu.com/s/1357924680",
           "quark": "https://pan.quark.cn/s/1234567890"
@@ -25,32 +55,13 @@
       ]
     },
     {
-      "name": "学习资料",
-      "files": [
-        {
-          "name": "Python教程.pdf",
-          "size": "50MB",
-          "type": "pdf",
-          "baidu": "https://pan.baidu.com/s/2468135790",
-          "quark": "https://pan.quark.cn/s/9876543210"
-        },
-        {
-          "name": "算法笔记.zip",
-          "size": "30MB",
-          "type": "file",
-          "baidu": "https://pan.baidu.com/s/3579246810"
-        }
-      ]
-    },
-    {
       "name": "游戏资源",
       "files": [
         {
-          "name": "独立游戏合集.zip",
-          "size": "1GB",
+          "name": "双蛇贪吃蛇[站长自创].exe",
+          "size": "26.3MB",
           "type": "file",
-          "baidu": "https://pan.baidu.com/s/4681357920",
-          "quark": "https://pan.quark.cn/s/5678901234"
+          "quark": "https://pan.quark.cn/s/4e009739400c"
         }
       ]
     }
