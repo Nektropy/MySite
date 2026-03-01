@@ -1,0 +1,102 @@
+// 修改友链直接修改这里就行 - 不动HTML
+// 示例：
+//    {
+//        name: "孟轩网的小站",
+//        url: "https://www.mxw2024.top/",
+//        avatar: "https://www.mxw2024.top/favicon.ico",
+//        desc: "一个简洁、美观、纯净、无广告的小站"
+//    },
+// 注意：
+// 修改最后一个时应注意
+//         } ← 这个没有逗号
+
+// 友链配置文件
+const friendsConfig = [
+
+    {
+        name: "孟轩网的小站",
+        url: "https://www.mxw2024.top/",
+        avatar: "https://www.mxw2024.top/favicon.ico",
+        desc: "一个简洁、美观、纯净、无广告的小站"
+    },
+
+    {
+        name: "孟轩科技's blog",
+        url: "https://blog.mxw2024.top/",
+        avatar: "https://blog.mxw2024.top/assets/images/favicon.ico",
+        desc: "一个简洁、美观、纯净、无广告的小站"
+    },
+
+    {
+        name: "石猫博客",
+        url: "http://imshimao.com/",
+        avatar: "https://www.vidlii.net/usfi/avt/1HH5cpvb235.jpg",
+        desc: "一只石头做的猫"
+    },
+
+    {
+        name: "CCWMORAN慕然科技",
+        url: "https://ccwmoran.github.io",
+        avatar: "https://gpo.saobby.com/i/XlQ1PmuU5UPnej02.webp",
+        desc: "CCW共创世界CCWMORAN慕然科技官网"
+    },
+
+    {
+        name: "白荼日记",
+        url: "https://www.iletter.top",
+        avatar: "https://www.ittoolman.top/images/avatar.png",
+        desc: "没有什么可以留住，除了死亡。"
+    },
+
+    {
+        name: "Weiwei'sblog",
+        url: "https://www.lov3u.top",
+        avatar: "https://pic1.imgdb.cn/item/6984bbf9013471eb7b52c6f0.jpg",
+        desc: "这是我的博客网站，我会在这分享自己的生活。"
+    },
+
+    {
+        name: "Inalineの小站",
+        url: "https://inaline.net",
+        avatar: "https://inaline.net/usr/themes/inaline/assets/images/logo/cover.png",
+        desc: "此情可待成追忆，只是当时已惘然。"
+    },
+
+    {
+        name: "SAKURAIN TEAM",
+        url: "https://sakurain.net/",
+        avatar: "https://sakurain.net/image/logo.webp",
+        desc: "用代码构建未来。"
+    },
+
+    {
+        name: "缎金SatinAuの主页",
+        url: "https://satinau.cn",
+        avatar: "https://satinau.cn/favicon.ico",
+        desc: "一只雪狐的摸鱼小站。"
+    },
+
+    {
+        name: "YororoIce Town",
+        url: "https://www.yororoice.top",
+        avatar: "https://pic4.zhimg.com/50/v2-6afa72220d29f045c15217aa6b275808_hd.jpg?source=1940ef5c",
+        desc: "你好"
+    }
+];
+
+// 合作配置
+const siteConfig = {
+    cooperators: [
+        {
+            name: "孟轩网的小站",
+            url: "https://www.mxw2024.top/",
+            avatar: "https://www.mxw2024.top/favicon.ico"
+        },
+
+        {
+            name: "孟轩科技's blog",
+            url: "https://blog.mxw2024.top/",
+            avatar: "https://blog.mxw2024.top/assets/images/favicon.ico"
+        }
+    ]
+};

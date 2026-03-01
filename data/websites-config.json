@@ -1,0 +1,60 @@
+{
+  "categories": [
+    {
+      "name": "免费软件",
+      "icon": "fa-solid fa-flag",
+      "websites": [
+        {
+          "name": "GameShare",
+          "description": "游戏分享社区",
+          "url": "https://www.gameshare.cc",
+          "favicon": "https://www.gameshare.cc/favicon.ico"
+        },
+        {
+          "name": "Get软件库",
+          "description": "办公软件下载",
+          "url": "https://getr.top",
+          "favicon": "https://getr.top/favicon.ico"
+        }
+      ]
+    },
+
+    {
+      "name": "在线工具",
+      "icon": "fa-solid fa-flag",
+      "websites": [
+        {
+          "name": "Desmos",
+          "description": "图形计算器",
+          "url": "https://www.desmos.com/calculator?lang=zh-CN",
+          "favicon": "https://www.desmos.com/favicon.ico"
+        },
+        {
+          "name": "16型人格",
+          "description": "免费人格测试",
+          "url": "https://www.16personalities.com/ch",
+          "favicon": "https://www.16personalities.com/favicon.ico"
+        }
+      ]
+    },
+
+    {
+      "name": "在线游戏",
+      "icon": "fa-solid fa-flag",
+      "websites": [
+        {
+          "name": "Poki-宝玩",
+          "description": "免费在线小游戏中心",
+          "url": "https://poki.com/zh",
+          "favicon": "https://a.poki-cdn.com/icons/favicon-32x32.png"
+        },
+        {
+          "name": "Eaglercraft.ir",
+          "description": "在浏览器中免费玩Minecraft",
+          "url": "https://eaglercraft.ir/zh",
+          "favicon": "https://eaglercraft.ir/favicon.ico"
+        }
+      ]
+    }
+  ]
+}
