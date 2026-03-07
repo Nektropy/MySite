@@ -26,19 +26,19 @@ const friendsConfig = [
         avatar: "https://blog.mxw2024.top/assets/images/favicon.ico",
         desc: "一个简洁、美观、纯净、无广告的小站"
     },
-
+    
     {
         name: "J的个人博客",
         url: "https://blog.jsoftstudio.top/",
         avatar: "https://blog.jsoftstudio.top/css/all/favicon.ico",
-        desc: "分享技术，记录生活"
+        desc: "分享技术，记录生活。"
     },
-
+    
     {
         name: "石猫博客",
         url: "http://imshimao.com/",
         avatar: "https://www.vidlii.net/usfi/avt/1HH5cpvb235.jpg",
-        desc: "一只石头做的猫"
+        desc: "一只石头做的猫。"
     },
 
     {
@@ -87,7 +87,7 @@ const friendsConfig = [
         name: "YororoIce Town",
         url: "https://www.yororoice.top",
         avatar: "https://pic4.zhimg.com/50/v2-6afa72220d29f045c15217aa6b275808_hd.jpg?source=1940ef5c",
-        desc: "你好"
+        desc: "你好。"
     }
 ];
 
