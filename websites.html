@@ -125,7 +125,7 @@
 </main>
 
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <script src="config.js"></script>
+    <script src="data/config.js"></script>
     <script src="main.js"></script>
     <script>
         // 页面加载完成后加载站点
@@ -135,7 +135,7 @@
 
         // 从JSON配置文件加载站点
         function loadWebsites() {
-            fetch('websites-config.json')
+            fetch('data/websites-config.json')
                 .then(response => response.json())
                 .then(data => {
                     renderWebsites(data.categories);

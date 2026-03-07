@@ -162,7 +162,7 @@
     </div>
 
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <script src="config.js"></script>
+    <script src="data/config.js"></script>
     <script src="main.js"></script>
     <script>
         // 页面加载完成后加载资源
@@ -172,7 +172,7 @@
 
         // 从JSON配置文件加载资源
         function loadResources() {
-            fetch('downloads-config.json')
+            fetch('data/downloads-config.json')
                 .then(response => response.json())
                 .then(data => {
                     renderResources(data.folders);
