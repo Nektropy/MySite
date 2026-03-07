@@ -28,6 +28,13 @@ const friendsConfig = [
     },
 
     {
+        name: "J的个人博客",
+        url: "https://blog.jsoftstudio.top/",
+        avatar: "https://blog.jsoftstudio.top/css/all/favicon.ico",
+        desc: "分享技术，记录生活"
+    },
+
+    {
         name: "石猫博客",
         url: "http://imshimao.com/",
         avatar: "https://www.vidlii.net/usfi/avt/1HH5cpvb235.jpg",
