@@ -12,7 +12,13 @@
         },
         {
           "name": "Get软件库",
-          "description": "办公软件下载",
+          "description": "资源共享平台，可自由发布和获取地址",
+          "url": "https://more.jsoftstudio.top",
+          "favicon": "https://more.jsoftstudio.top/favicon.ico"
+        },
+        {
+          "name": "MoreLine资源站",
+          "description": "",
           "url": "https://getr.top",
           "favicon": "https://getr.top/favicon.ico"
         }
