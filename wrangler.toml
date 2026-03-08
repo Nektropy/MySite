@@ -1,5 +1,5 @@
-name = "your-project-name"
-compatibility_date = "2025-03-08"
+name = "nektropy"
+compatibility_date = "2026-03-08"
 
 # 核心配置：指定静态资源目录
 [assets]
