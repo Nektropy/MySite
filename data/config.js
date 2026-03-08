@@ -42,13 +42,6 @@ const friendsConfig = [
     },
 
     {
-        name: "CCWMORAN慕然科技",
-        url: "https://ccwmoran.github.io",
-        avatar: "https://gpo.saobby.com/i/XlQ1PmuU5UPnej02.webp",
-        desc: "CCW共创世界CCWMORAN慕然科技官网"
-    },
-
-    {
         name: "白荼日记",
         url: "https://www.iletter.top",
         avatar: "https://www.ittoolman.top/images/avatar.png",
