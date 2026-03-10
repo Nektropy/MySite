@@ -40,6 +40,12 @@
           "description": "免费人格测试",
           "url": "https://www.16personalities.com/ch",
           "favicon": "https://www.16personalities.com/favicon.ico"
+        },
+        {
+          "name": "b站免硬币改名",
+          "description": "每周可免6硬币改一次名",
+          "url": "bilibili://user_center/editname",
+          "favicon": "https://bilibili.com/favicon.ico"
         }
       ]
     },
