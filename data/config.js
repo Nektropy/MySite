@@ -84,12 +84,14 @@ const siteConfig = {
             name: "孟轩网的小站",
             url: "https://www.mxw2024.top/",
             avatar: "https://www.mxw2024.top/favicon.ico"
+            desc: "一个简洁、美观、纯净、无广告的小站"
         },
 
         {
             name: "孟轩科技's blog",
             url: "https://blog.mxw2024.top/",
             avatar: "https://blog.mxw2024.top/assets/images/favicon.ico"
+            desc: "分享技术，记录生活的个人博客"
         }
     ]
 };
