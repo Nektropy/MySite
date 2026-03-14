@@ -14,19 +14,12 @@
 const friendsConfig = [
 
     {
-        name: "孟轩网的小站",
-        url: "https://www.mxw2024.top/",
-        avatar: "https://www.mxw2024.top/favicon.ico",
-        desc: "一个简洁、美观、纯净、无广告的小站"
+        name: "CCWMORAN慕然科技",
+        url: "https://ccwmoran.pages.dev",
+        avatar: "https://gpo.saobby.com/i/XlQ1PmuU5UPnej02.webp",
+        desc: "愿你在峥嵘长青的世界里热忱不息。"
     },
 
-    {
-        name: "孟轩科技's blog",
-        url: "https://blog.mxw2024.top/",
-        avatar: "https://blog.mxw2024.top/assets/images/favicon.ico",
-        desc: "一个简洁、美观、纯净、无广告的小站"
-    },
-    
     {
         name: "J的个人博客",
         url: "https://blog.jsoftstudio.top/",
@@ -80,7 +73,7 @@ const friendsConfig = [
         name: "YororoIce Town",
         url: "https://www.yororoice.top",
         avatar: "https://pic4.zhimg.com/50/v2-6afa72220d29f045c15217aa6b275808_hd.jpg?source=1940ef5c",
-        desc: "你好。"
+        desc: "你好"
     }
 ];
 
