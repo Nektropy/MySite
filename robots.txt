@@ -1,5 +1,25 @@
 # 允许所有搜索引擎抓取
 User-agent: *
-Disallow: /wp-admin/
-Disallow: /private/
+Allow: /
+
+# 针对特定爬虫的规则
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# 禁止抓取的目录
+Disallow: /backup/
+
+# 站点地图
 Sitemap: https://www.nekt.qzz.io/sitemap.xml
+
+# 主机信息
+Host: https://www.nekt.qzz.io

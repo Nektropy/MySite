@@ -3,14 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>熵的小站 | 重要的是不要停止质疑，好奇心有其存在的理由</title>
-    <meta name="description" content="熵的小站，一名对计算机科学充满热情的高中生，相信AI能够改变世界。">
-    <meta name="keywords" content="Nektropy,熵,熵的小站,熵的个人主页,高中生极客">
+    <title>熵的小站 - Nektropy的个人主页 | 高中生极客的技术探索</title>
+    <meta name="description" content="熵的小站，一名对计算机科学充满热情的高中生，专注于Python、Web开发和人工智能技术探索，分享技术笔记和个人成长历程。">
+    <meta name="keywords" content="Nektropy,熵,熵的小站,高中生极客,Python编程,Web开发,人工智能,技术博客,个人主页">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
     <meta name="author" content="熵">
     <meta name="theme-color" content="#2563eb">
+    
+    <!-- 多语言支持 -->
+    <link rel="alternate" hreflang="zh-CN" href="https://www.nekt.qzz.io/" />
+    <link rel="alternate" hreflang="en" href="https://www.nekt.qzz.io/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.nekt.qzz.io/" />
     <meta name="360-site-verification" content="13a8857b5259777d2e3fca7757b4ac21" />
     <meta name="google-adsense-account" content="ca-pub-1979146835624992">
     <link rel="icon" href="/img/head.webp">
+    
+    <!-- Schema.org 结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "熵",
+      "alternateName": "Nektropy",
+      "url": "https://www.nekt.qzz.io",
+      "image": "https://www.nekt.qzz.io/img/head.webp",
+      "description": "对计算机科学充满热情的高中生，专注于Python、Web开发和人工智能技术探索",
+      "jobTitle": "高中生极客",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "中国",
+        "addressRegion": "内蒙古",
+        "addressLocality": "呼和浩特"
+      },
+      "knowsAbout": [
+        "Python编程",
+        "Web开发",
+        "人工智能",
+        "计算机科学"
+      ],
+      "homeLocation": {
+        "@type": "Place",
+        "name": "呼和浩特",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "中国",
+          "addressRegion": "内蒙古",
+          "addressLocality": "呼和浩特"
+        }
+      },
+      "email": "psz0410@163.com",
+      "sameAs": [
+        "https://github.com/Nektropy"
+      ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "熵的小站",
+      "url": "https://www.nekt.qzz.io",
+      "description": "熵的个人主页，分享技术学习心得和个人成长历程",
+      "publisher": {
+        "@type": "Person",
+        "name": "熵"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.nekt.qzz.io/blog/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <!-- 样式表 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -31,6 +97,11 @@
     <link rel="preconnect" href="https://unpkg.com">
     <link rel="preconnect" href="https://chat.mxw315.buzz">
     <link rel="dns-prefetch" href="https://chat.mxw315.buzz">
+    
+    <!-- 资源预加载 -->
+    <link rel="preload" href="/img/head.webp" as="image">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="main.js" as="script">
 
     <!-- 统计代码 -->
     <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
@@ -215,7 +286,7 @@
                 </div>
 
                 <div class="card">
-                    <h3 class="card-title"><i class="fas fa-address-book"></i>联系方式</h3>
+                    <h3 class="card-title"><i class="fas fa-address-book"></i>详细信息</h3>
                     <ul class="contact-list">
                         <li>
                             <div class="contact-icon liquid-glass">
@@ -232,7 +303,16 @@
                             </div>
                             <div class="contact-details">
                                 <strong>所在地区</strong>
-                                <span>中国 · 内蒙古</span>
+                                <span>中国 · 内蒙古 · 呼和浩特</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon liquid-glass">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="contact-details">
+                                <strong>服务区域</strong>
+                                <span>全国范围内提供技术服务</span>
                             </div>
                         </li>
                     </ul>
@@ -316,7 +396,7 @@
 
 
                 <div class="cooperators" id="cooperators">
-                    <span class="rainbow-link" style="font-size: 1.5rem; font-weight: 450;">合作站点</span>
+                    <span class="cooperators-title" style="font-size: 1.5rem; font-weight: 450;">合作站点</span>
                     <span class="coop-list" id="coopList"></span>
                 </div>
                 

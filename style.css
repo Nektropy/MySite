@@ -946,23 +946,44 @@ body::after {
 }
 
 .cooperators {
-    margin: 20px auto;
-    padding: 24px;
+    margin: 30px auto;
+    padding: 30px;
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     text-align: center;
-    max-width: 700px;
+    max-width: 800px;
     width: fit-content;
-    min-width: 280px;
+    min-width: 300px;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cooperators::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(58, 134, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: coop-shine 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes coop-shine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
 }
 
 .cooperators:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(58, 134, 255, 0.5);
 }
 
 .coop-label {
@@ -971,49 +992,127 @@ body::after {
     margin-bottom: 15px;
     color: var(--primary);
     font-size: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.cooperators-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-text 3s ease infinite;
+}
+
+@keyframes rainbow-text {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .coop-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 15px;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 .coop-list a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    color: var(--text-main);
+    gap: 10px;
+    padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
     text-decoration: none;
-    transition: var(--trans);
-    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.95rem;
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.coop-list a span {
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-text 3s ease infinite;
+}
+
+.coop-list a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(58, 134, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.coop-list a:hover::before {
+    left: 100%;
 }
 
 .coop-list a:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(58, 134, 255, 0.15);
     border-color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(58, 134, 255, 0.3);
+    color: var(--primary);
 }
 
 .coop-avatar {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(58, 134, 255, 0.3);
+}
+
+.coop-list a:hover .coop-avatar {
+    transform: scale(1.2) rotate(15deg);
+    box-shadow: 0 4px 12px rgba(58, 134, 255, 0.5);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .cooperators {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    
+    .coop-list {
+        gap: 10px;
+    }
+    
+    .coop-list a {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .coop-avatar {
+        width: 28px;
+        height: 28px;
+    }
 }
 
 .footer-friends {
-    margin: 20px 0;
-    padding: 24px;
+    margin: 30px 0;
+    padding: 30px;
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
@@ -1021,54 +1120,127 @@ body::after {
     text-align: center;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-friends::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(131, 56, 236, 0.1), transparent);
+    transform: rotate(-45deg);
+    animation: friend-shine 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes friend-shine {
+    0% { transform: translateX(100%) rotate(-45deg); }
+    100% { transform: translateX(-100%) rotate(-45deg); }
 }
 
 .footer-friends:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(131, 56, 236, 0.5);
 }
 
 .footer-friends-title {
-    font-size: 1rem;
-    color: var(--primary);
-    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--secondary);
+    margin-bottom: 20px;
     font-weight: 600;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-friends-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-friend-item {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    gap: 10px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
     text-decoration: none;
     color: var(--text-main);
-    font-size: 0.85rem;
-    transition: var(--trans);
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.footer-friend-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(131, 56, 236, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.footer-friend-item:hover::before {
+    left: 100%;
 }
 
 .footer-friend-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(131, 56, 236, 0.15);
+    border-color: var(--secondary);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(131, 56, 236, 0.3);
+    color: var(--secondary);
 }
 
 .footer-friend-item img {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--secondary);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(131, 56, 236, 0.3);
+}
+
+.footer-friend-item:hover img {
+    transform: scale(1.2) rotate(-15deg);
+    box-shadow: 0 4px 12px rgba(131, 56, 236, 0.5);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .footer-friends {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .footer-friends-list {
+        gap: 10px;
+    }
+    
+    .footer-friend-item {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .footer-friend-item img {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2797,6 +2969,49 @@ body::after {
 .wl-image-preview-container img {
     border-radius: 8px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.dark-mode .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .wl-image-preview-close {
