@@ -841,7 +841,7 @@
 
             const walineInstance = init({
                 el: '#waline',
-                serverURL: 'https://chat.mxw315.buzz',
+                serverURL: 'https://nekt.mxw2024.top',
                 dark: document.body.classList.contains('dark-mode') ? 'html[class="dark-mode"]' : false,
                 lang: 'zh-CN',
                 placeholder: '说点什么吧... 支持 Markdown、表情包、点击图片预览',
@@ -966,7 +966,7 @@
     async function initCommentCount() {
         const updateCount = async () => {
             try {
-                const response = await fetch(`https://chat.mxw315.buzz/api/comment?path=${encodeURIComponent(location.pathname)}`);
+                const response = await fetch(`https://nekt.mxw2024.top/api/comment?path=${encodeURIComponent(location.pathname)}`);
                 const data = await response.json();
                 const count = data.data?.count || 0;
                 
@@ -1020,7 +1020,7 @@
 
         // 尝试从服务器获取计数（使用 article API）
         try {
-            const response = await fetch(`https://chat.mxw315.buzz/api/article?path=${encodeURIComponent(location.pathname)}`);
+            const response = await fetch(`https://nekt.mxw2024.top/api/article?path=${encodeURIComponent(location.pathname)}`);
             if (response.ok) {
                 const data = await response.json();
                 const reactionData = data.data?.reaction || {};
@@ -1054,7 +1054,7 @@
                 
                 // 尝试提交到服务器
                 try {
-                    await fetch('https://chat.mxw315.buzz/api/article', {
+                    await fetch('https://nekt.mxw2024.top/api/article', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -1075,7 +1075,7 @@
         try {
             await new Promise(resolve => setTimeout(resolve, 1500));
             
-            const response = await fetch(`https://chat.mxw315.buzz/api/comment?type=recent&count=5`);
+            const response = await fetch(`https://nekt.mxw2024.top/api/comment?type=recent&count=5`);
             const data = await response.json();
             const comments = data.data || [];
             
