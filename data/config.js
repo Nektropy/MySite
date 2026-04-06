@@ -15,7 +15,7 @@ const friendsConfig = [
 
     {
         name: "CCWMORAN慕然科技",
-        url: "https://ccwmoran.pages.dev",
+        url: "https://www.ccwmoran.top",
         avatar: "https://gpo.saobby.com/i/XlQ1PmuU5UPnej02.webp",
         desc: "愿你在峥嵘长青的世界里热忱不息。"
     },
