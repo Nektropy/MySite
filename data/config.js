@@ -56,6 +56,13 @@ const friendsConfig = [
     },
 
     {
+        name: "羊角快车's blog",
+        url: "https://yangjiao.dpdns.org",
+        avatar: "https://yangjiao.dpdns.org/images/avatar.jpg",
+        desc: "白嫖，从你我做起。"
+    },
+
+    {
         name: "SAKURAIN TEAM",
         url: "https://sakurain.net/",
         avatar: "https://sakurain.net/image/logo.webp",
