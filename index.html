@@ -10,6 +10,8 @@
     <meta name="revisit-after" content="7 days">
     <meta name="author" content="熵">
     <meta name="theme-color" content="#2563eb">
+    <meta name="cache-control" content="public, max-age=31536000">
+    <meta name="expires" content="31536000">
     
     <!-- 多语言支持 -->
     <link rel="alternate" hreflang="zh-CN" href="https://www.nekt.qzz.io/" />
@@ -79,6 +81,10 @@
     </script>
 
     <!-- 样式表 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <!-- Waline CSS -->
@@ -88,12 +94,19 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://unpkg.com">
     <link rel="preconnect" href="https://nekt.mxw2024.top">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://nekt.mxw2024.top">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     
     <!-- 资源预加载 -->
-    <link rel="preload" href="/img/head.webp" as="image">
+    <link rel="preload" href="/img/head.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="/img/bg-pc.webp" as="image" media="(min-width: 769px)">
+    <link rel="preload" href="/img/bg-mobile.webp" as="image" media="(max-width: 768px)">
     <link rel="preload" href="style.css" as="style">
     <link rel="preload" href="main.js" as="script">
+    <link rel="preload" href="data/config.js" as="script">
 
     <!-- 统计代码 -->
     <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
@@ -103,7 +116,9 @@
     <!-- 页面加载动画 -->
     <div class="page-loader" id="pageLoader">
         <div class="loader-content">
-            <div class="loader-spinner"></div>
+            <div class="loader-spinner">
+                <span></span>
+            </div>
             <p class="loader-text">正在加载...</p>
         </div>
     </div>

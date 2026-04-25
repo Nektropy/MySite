@@ -1119,6 +1119,46 @@
         }
     }
 
+    // 节日检测和祝贺语生成
+    function initHolidayGreeting() {
+        const today = new Date();
+        const month = today.getMonth() + 1;
+        const day = today.getDate();
+        const dateStr = `${month}-${day}`;
+        
+        // 节日列表
+        const holidays = {
+            '1-1': '🎉 元旦快乐！新的一年，新的开始，愿你在新的一年里心想事成，万事如意！',
+            '2-14': '💖 情人节快乐！愿你和心爱的人共度美好时光，爱情甜蜜如蜜！',
+            '3-8': '🌸 女神节快乐！愿所有女性朋友都能被温柔以待，活出自己的精彩！',
+            '3-12': '🌱 植树节快乐！让我们一起为地球增添绿色，共建美好家园！',
+            '4-1': '🤪 愚人节快乐！愿你在今天收获更多的欢笑和快乐！',
+            '5-1': '🎉 劳动节快乐！向所有劳动者致敬，愿你在假期里好好放松！',
+            '5-4': '🌟 青年节快乐！愿所有青年朋友都能勇敢追梦，创造属于自己的精彩！',
+            '6-1': '🎈 儿童节快乐！愿所有小朋友都能健康成长，快乐每一天！',
+            '7-1': '🇨🇳 建党节快乐！祝福祖国繁荣昌盛，人民幸福安康！',
+            '8-1': '🪖 建军节快乐！向所有军人致敬，感谢你们的守护！',
+            '9-10': '🎓 教师节快乐！感谢老师们的辛勤付出，桃李满天下！',
+            '10-1': '🇨🇳 国庆节快乐！祝福祖国生日快乐，繁荣富强！',
+            '12-25': '🎄 圣诞节快乐！愿你在这个温馨的节日里收获满满的幸福和快乐！'
+        };
+        
+        // 检测是否是节日
+        if (holidays[dateStr]) {
+            const greeting = holidays[dateStr];
+            const announcementTrack = document.querySelector('.scroll-track');
+            
+            if (announcementTrack) {
+                // 保留原有内容，添加节日祝贺
+                const originalContent = announcementTrack.innerHTML;
+                announcementTrack.innerHTML = `
+                    <span class="scroll-text">${greeting} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${originalContent.split('<span class="scroll-text">')[1].split('</span>')[0]}</span>
+                    <span class="scroll-text" aria-hidden="true">${greeting} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${originalContent.split('<span class="scroll-text" aria-hidden="true">')[1].split('</span>')[0]}</span>
+                `;
+            }
+        }
+    }
+
     // 启动
     document.addEventListener('DOMContentLoaded', function() {
         initPageLoader();
@@ -1130,6 +1170,7 @@
         renderFooterFriends();
         initAnimations();
         initStats();
+        initHolidayGreeting();
         
         // 延迟加载 Waline (仅在有评论区的页面)
         if (document.getElementById('waline')) {

@@ -17,7 +17,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
 }
 
 :root {
@@ -32,6 +32,9 @@
     --trans: all 0.3s ease;
     --sidebar-width: 240px;
     --sidebar-collapsed: 70px;
+    --gradient-primary: linear-gradient(135deg, #3a86ff, #8338ec);
+    --gradient-accent: linear-gradient(135deg, #ff006e, #3a86ff);
+    --gradient-bg: linear-gradient(135deg, rgba(58, 134, 255, 0.1), rgba(131, 56, 236, 0.1));
 }
 
 .dark-mode {
@@ -41,25 +44,88 @@
     --glass-bg: rgba(30, 30, 30, 0.4);
     --glass-border: rgba(255, 255, 255, 0.1);
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --gradient-primary: linear-gradient(135deg, #4cc9f0, #4361ee);
+    --gradient-accent: linear-gradient(135deg, #f72585, #4cc9f0);
+    --gradient-bg: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(67, 97, 238, 0.1));
 }
 
 html {
     scroll-behavior: smooth;
 }
 
+/* 文字淡入动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* 基础样式：适用于所有设备 */
 body {
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.7;
     min-height: 100vh;
     position: relative; /* 为伪元素提供参考 */
     overflow-x: hidden;
+    letter-spacing: 0.02em;
+    word-spacing: 0.05em;
 
     /* 将 cover 和 fixed 属性拆开写，避免重复 */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* 保留视差效果 */
     background-repeat: no-repeat;
+}
+
+/* 应用淡入动画到主要文字元素 */
+.header h1,
+.header p,
+.card-title,
+.about p,
+.quote-text,
+.quote-author,
+.name,
+.title {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 错开动画延迟 */
+.header h1 {
+    animation-delay: 0.2s;
+}
+
+.header p {
+    animation-delay: 0.4s;
+}
+
+.card-title {
+    animation-delay: 0.6s;
+}
+
+.about p {
+    animation-delay: 0.8s;
+}
+
+.quote-text {
+    animation-delay: 1s;
+}
+
+.quote-author {
+    animation-delay: 1.2s;
+}
+
+.name {
+    animation-delay: 0.3s;
+}
+
+.title {
+    animation-delay: 0.5s;
 }
 
 /* 默认（电脑端）背景图 */
@@ -157,17 +223,36 @@ body::after {
 
 .sidebar-inner {
     height: 100%;
-    background: linear-gradient(135deg, rgba(20, 20, 30, 0.8), rgba(30, 20, 40, 0.6));
+    background: var(--gradient-bg);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    -moz-backdrop-filter: blur(20px) saturate(180%);
+    -ms-backdrop-filter: blur(20px) saturate(180%);
+    border-right: 1px solid var(--glass-border);
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
     display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 20px 0;
     position: relative;
     overflow: hidden;
     width: 100%;
     box-sizing: border-box;
+}
+
+.sidebar-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    z-index: 0;
 }
 
 .sidebar.collapsed .sidebar-inner {
@@ -507,11 +592,16 @@ body::after {
 }
 
 .header h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 8px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    letter-spacing: 0.03em;
+    background: linear-gradient(90deg, #fff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .header p {
@@ -523,27 +613,57 @@ body::after {
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 35px;  /* 35px */
-    margin-bottom: 60px;  /* 60px */
+    gap: 30px;
+    margin-bottom: 60px;
 }
 
 .card {
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    -moz-backdrop-filter: blur(12px);
+    -ms-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
-    border-radius: 24px;  /* 24px */
+    border-radius: 24px;
     box-shadow: var(--shadow);
-    padding: 32px;  /* 32px */
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 32px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
     backface-visibility: hidden;
     will-change: transform, box-shadow, border-color;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
     transform: translateZ(0);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+    z-index: 0;
+}
+
+.card:hover::before {
+    left: 100%;
 }
 
 .card:hover {
-    transform: translateY(-8px);  /* -8px */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);  /* 增强阴影效果 */
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
     border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .profile-card {
@@ -571,16 +691,19 @@ body::after {
 }
 
 .name {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .title {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
 }
 
 .status {
@@ -620,15 +743,46 @@ body::after {
     justify-content: center;
     color: var(--primary);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-social-links .social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.profile-social-links .social-link:hover::before {
+    left: 100%;
 }
 
 .profile-social-links .social-link:hover {
     background: var(--primary);
     color: #fff;
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.1);
     box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+    border-color: var(--primary);
+}
+
+.profile-social-links .social-link:hover i {
+    animation: social-icon-bounce 0.6s ease;
+}
+
+@keyframes social-icon-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
 @keyframes pulse {
@@ -637,15 +791,23 @@ body::after {
 }
 
 .card-title {
-    font-size: 1.3rem;  /* 1.3rem */
+    font-size: 1.4rem;  /* 1.4rem */
     font-weight: 600;
     color: var(--primary);
-    margin-bottom: 25px;  /* 25px */
+    margin-bottom: 28px;  /* 28px */
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-bottom: 12px;
+    gap: 12px;
+    padding-bottom: 14px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-title {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+    transform: translateX(5px);
 }
 
 .card-title i {
@@ -653,10 +815,11 @@ body::after {
 }
 
 .about p {
-    margin-bottom: 16px;  /* 16px */
+    margin-bottom: 18px;  /* 18px */
     color: var(--text-sub);
     font-size: 1rem;
-    line-height: 1.8;  /* 1.8 */
+    line-height: 1.85;  /* 1.85 */
+    letter-spacing: 0.02em;
 }
 
 /* ========== 液态玻璃图标 ========== */
@@ -758,11 +921,14 @@ body::after {
 }
 
 .skill, .hobby {
-    padding: 8px 20px;  /* 8px 20px */
+    padding: 8px 20px;
     border-radius: 50px;
-    font-size: 0.9rem;  /* 0.9rem */
+    font-size: 0.9rem;
     font-weight: 500;
-    transition: var(--trans);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .skill {
@@ -775,6 +941,37 @@ body::after {
     background: rgba(255, 0, 110, 0.15);
     color: var(--accent);
     border: 1px solid rgba(255, 0, 110, 0.3);
+}
+
+.skill::before, .hobby::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.skill:hover::before, .hobby:hover::before {
+    left: 100%;
+}
+
+.skill:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4);
+}
+
+.hobby:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 0, 110, 0.4);
 }
 
 .site-age-grid {
@@ -854,18 +1051,20 @@ body::after {
 }
 
 .quote-text {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-style: italic;
-    line-height: 1.8;
+    line-height: 1.9;
     color: var(--text-main);
-    margin-bottom: 12px;
-    min-height: 50px;
+    margin-bottom: 16px;
+    min-height: 60px;
+    letter-spacing: 0.02em;
 }
 
 .quote-author {
     text-align: right;
     color: var(--text-sub);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
 }
 
 /* 时钟字体样式 */
@@ -1029,8 +1228,8 @@ body::after {
     align-items: center;
     gap: 10px;
     padding: 12px 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(58, 134, 255, 0.15);
+    border: 1px solid var(--primary);
     border-radius: 25px;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1038,15 +1237,13 @@ body::after {
     white-space: nowrap;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(58, 134, 255, 0.3);
+    color: var(--primary);
 }
 
 .coop-list a span {
-    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbow-text 3s ease infinite;
+    color: var(--primary);
+    transition: all 0.3s ease;
 }
 
 .coop-list a::before {
@@ -1056,20 +1253,63 @@ body::after {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(58, 134, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: left 0.6s ease;
+}
+
+.coop-list a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 110, 0.3), transparent);
+    transition: left 0.8s ease;
+    z-index: 1;
 }
 
 .coop-list a:hover::before {
     left: 100%;
 }
 
+.coop-list a:hover::after {
+    left: 100%;
+}
+
 .coop-list a:hover {
-    background: rgba(58, 134, 255, 0.15);
-    border-color: var(--primary);
+    background: linear-gradient(135deg, rgba(58, 134, 255, 0.2), rgba(255, 0, 110, 0.2));
+    border: 1px solid transparent;
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(58, 134, 255, 0.3);
-    color: var(--primary);
+    box-shadow: 
+        0 0 20px rgba(58, 134, 255, 0.5),
+        0 0 40px rgba(255, 0, 110, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: border-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes border-glow {
+    0% {
+        box-shadow: 
+            0 0 20px rgba(58, 134, 255, 0.5),
+            0 0 40px rgba(255, 0, 110, 0.3),
+            0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        box-shadow: 
+            0 0 30px rgba(255, 0, 110, 0.5),
+            0 0 60px rgba(58, 134, 255, 0.3),
+            0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.coop-list a:hover span {
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #ff6b6b);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-text 2s ease infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .coop-avatar {
@@ -1760,22 +2000,104 @@ body::after {
 @media (max-width: 768px) {
     .cards-container {
         grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .card {
+        padding: 24px;
     }
     
     .profile-card {
         grid-column: 1;
         flex-direction: column;
         text-align: center;
+        gap: 20px;
+        padding: 30px 20px;
+    }
+    
+    .header {
+        padding: 0 15px;
     }
     
     .header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .name {
         font-size: 2rem;
+    }
+    
+    .title {
+        font-size: 1rem;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .quote-text {
+        font-size: 1.05rem;
+    }
+    
+    .about p {
+        font-size: 0.95rem;
+    }
+    
+    .main-content {
+        padding: 15px;
     }
 }
 
 @media (max-width: 480px) {
     .site-age-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .name {
+        font-size: 1.8rem;
+    }
+    
+    .title {
+        font-size: 0.9rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .quote-text {
+        font-size: 0.95rem;
+    }
+    
+    .about p {
+        font-size: 0.9rem;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .profile-card {
+        padding: 25px 15px;
+    }
+    
+    .profile-img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .skills-grid, .hobbies-grid {
+        gap: 8px;
+    }
+    
+    .skill, .hobby {
+        padding: 6px 16px;
+        font-size: 0.85rem;
     }
 }
 
@@ -1802,26 +2124,108 @@ body::after {
 
 .loader-content {
     text-align: center;
+    position: relative;
+    width: 150px;
+    height: 150px;
 }
 
 .loader-spinner {
-    width: 60px;
-    height: 60px;
-    border: 3px solid rgba(255,255,255,0.1);
-    border-top-color: var(--primary);
-    border-radius: 50%;
-    animation: loader-spin 1s linear infinite;
-    margin: 0 auto 20px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation:三体-animation 8s ease-in-out infinite;
 }
 
-@keyframes loader-spin {
-    to { transform: rotate(360deg); }
+.loader-spinner::before,
+.loader-spinner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    animation:三体-move 8s ease-in-out infinite;
+}
+
+.loader-spinner::before {
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 0s;
+    box-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary);
+}
+
+.loader-spinner::after {
+    width: 15px;
+    height: 15px;
+    background: var(--accent);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    animation-delay: 2s;
+    box-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent);
+}
+
+.loader-spinner span {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--secondary);
+    border-radius: 50%;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    animation:三体-move 8s ease-in-out infinite;
+    animation-delay: 4s;
+    box-shadow: 0 0 12px var(--secondary), 0 0 24px var(--secondary);
+}
+
+@keyframes 三体-animation {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes 三体-move {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(30px, -30px) scale(1.2);
+    }
+    50% {
+        transform: translate(0, 60px) scale(0.8);
+    }
+    75% {
+        transform: translate(-30px, -30px) scale(1.1);
+    }
 }
 
 .loader-text {
     color: rgba(255,255,255,0.8);
     font-size: 1rem;
     letter-spacing: 2px;
+    margin-top: 30px;
+    background: linear-gradient(90deg, #fff, var(--primary), #fff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shift 3s ease infinite;
+}
+
+@keyframes text-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* ========== Waline 液态玻璃主题 ========== */
