@@ -77,6 +77,13 @@ const friendsConfig = [
     },
 
     {
+        name: "XiaoWangのBlog",
+        url: "https://image.xiaowang233.top",
+        avatar: "https://image.xiaowang233.top/ts.png",
+        desc: "「又一个 WordPress 站点」"
+    },
+
+    {
         name: "YororoIce Town",
         url: "https://www.yororoice.top",
         avatar: "https://pic4.zhimg.com/50/v2-6afa72220d29f045c15217aa6b275808_hd.jpg?source=1940ef5c",
