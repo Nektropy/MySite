@@ -79,7 +79,7 @@ const friendsConfig = [
     {
         name: "XiaoWangのBlog",
         url: "https://image.xiaowang233.top",
-        avatar: "https://image.xiaowang233.top/ts.png",
+        avatar: "https://blog.xiaowang233.top/ts.png",
         desc: "「又一个 WordPress 站点」"
     },
 
