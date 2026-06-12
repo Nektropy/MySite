@@ -27,6 +27,14 @@ const friendsConfig = [
         desc: "分享技术，记录生活。"
     },
     
+
+    {
+        name: "菱华科技",
+        url: "https://blog.inlyra.cn/",
+        avatar: "https://cos.inlyra.cn/view.php/3d8dc77cc7b8c5979c7c97a4f9dbbbce.jpeg",
+        desc: "创意赋能创作，技术点亮梦想 —— 专注于技术开发与创意落地。"
+    },
+
     {
         name: "石猫博客",
         url: "http://imshimao.com/",
