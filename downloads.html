@@ -125,9 +125,15 @@
                         <!-- 根目录 -->
                         <div class="file-system-root" id="fileSystemRoot">
                             <!-- 资源将通过JavaScript从JSON配置文件加载 -->
-                            <div class="loading">
+                            <div class="loading" id="resourcesLoading">
                                 <div class="loader-spinner"></div>
                                 <p>加载资源中...</p>
+                            </div>
+                            <!-- 骨架屏 -->
+                            <div class="skeleton-container" id="skeletonContainer" style="display: none;">
+                                <div class="skeleton skeleton-folder"></div>
+                                <div class="skeleton skeleton-folder"></div>
+                                <div class="skeleton skeleton-folder"></div>
                             </div>
                         </div>
                     </div>
@@ -176,13 +182,30 @@
 
         // 从JSON配置文件加载资源
         function loadResources() {
+            const loadingEl = document.getElementById('resourcesLoading');
+            const skeletonEl = document.getElementById('skeletonContainer');
+            
+            // 显示骨架屏
+            setTimeout(() => {
+                if (loadingEl) loadingEl.style.display = 'none';
+                if (skeletonEl) skeletonEl.style.display = 'block';
+            }, 300);
+            
             fetch('/data/downloads-config.json')
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
                 .then(data => {
-                    renderResources(data.folders);
+                    // 延迟显示内容，让骨架屏动画有足够时间展示
+                    setTimeout(() => {
+                        if (skeletonEl) skeletonEl.style.display = 'none';
+                        renderResources(data.folders);
+                    }, 500);
                 })
                 .catch(error => {
                     console.error('加载资源失败:', error);
+                    if (skeletonEl) skeletonEl.style.display = 'none';
                     document.getElementById('fileSystemRoot').innerHTML = '<div class="error">加载资源失败，请检查配置文件</div>';
                 });
         }

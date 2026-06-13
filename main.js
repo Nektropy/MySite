@@ -1159,6 +1159,193 @@
         }
     }
 
+    // 图片懒加载增强
+    function initLazyLoad() {
+        const images = document.querySelectorAll('img[data-src]');
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.dataset.src;
+                    if (src) {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                        
+                        // 添加加载动画
+                        img.style.opacity = '0';
+                        img.style.transition = 'opacity 0.5s ease';
+                        img.onload = () => {
+                            img.style.opacity = '1';
+                        };
+                    }
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px',
+            threshold: 0.01
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+    }
+
+    // 平滑滚动优化
+    function initSmoothScroll() {
+        // 禁用原生平滑滚动，使用自定义实现
+        document.documentElement.style.scrollBehavior = 'auto';
+        
+        const scrollContainer = document.scrollingElement || document.documentElement;
+        let isScrolling = false;
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (!target) return;
+                
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+                const startPosition = window.scrollY;
+                const distance = targetPosition - startPosition;
+                const duration = 800;
+                const startTime = performance.now();
+                
+                if (isScrolling) return;
+                isScrolling = true;
+                
+                function animate(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // 使用缓动函数
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                    
+                    window.scrollTo({
+                        top: startPosition + distance * easeProgress,
+                        behavior: 'instant'
+                    });
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        isScrolling = false;
+                    }
+                }
+                
+                requestAnimationFrame(animate);
+            });
+        });
+    }
+
+    // 添加触摸反馈效果
+    function initTouchFeedback() {
+        const buttons = document.querySelectorAll('button, a.nav-link, a.download-link, .folder-header, .file-item');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('touchstart', function(e) {
+                this.style.transform = 'scale(0.97)';
+            }, { passive: true });
+            
+            btn.addEventListener('touchend', function(e) {
+                this.style.transform = '';
+            }, { passive: true });
+            
+            btn.addEventListener('touchcancel', function(e) {
+                this.style.transform = '';
+            }, { passive: true });
+        });
+    }
+
+    // 添加点击波纹效果
+    function initRippleEffect() {
+        const rippleElements = document.querySelectorAll('.ripple-effect, button, a');
+        
+        rippleElements.forEach(element => {
+            element.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    width: 10px;
+                    height: 10px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    transform: translate(-50%, -50%) scale(0);
+                    animation: ripple-animation 0.6s ease-out forwards;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+        
+        // 添加波纹动画样式
+        if (!document.querySelector('#ripple-style')) {
+            const style = document.createElement('style');
+            style.id = 'ripple-style';
+            style.textContent = `
+                @keyframes ripple-animation {
+                    to {
+                        transform: translate(-50%, -50%) scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    // 性能监控
+    function initPerformanceMonitoring() {
+        if ('PerformanceObserver' in window) {
+            const observer = new PerformanceObserver((list) => {
+                for (const entry of list.getEntries()) {
+                    if (entry.entryType === 'measure') {
+                        console.log(`Performance: ${entry.name} = ${entry.duration.toFixed(2)}ms`);
+                    }
+                }
+            });
+            
+            observer.observe({ entryTypes: ['measure', 'navigation'] });
+        }
+    }
+
+    // 防抖函数
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // 节流函数
+    function throttle(func, limit) {
+        let inThrottle;
+        return function executedFunction(...args) {
+            if (!inThrottle) {
+                func(...args);
+                inThrottle = true;
+                setTimeout(() => (inThrottle = false), limit);
+            }
+        };
+    }
+
     // 启动
     document.addEventListener('DOMContentLoaded', function() {
         initPageLoader();
@@ -1171,6 +1358,11 @@
         initAnimations();
         initStats();
         initHolidayGreeting();
+        initLazyLoad();
+        initSmoothScroll();
+        initTouchFeedback();
+        initRippleEffect();
+        initPerformanceMonitoring();
         
         // 延迟加载 Waline (仅在有评论区的页面)
         if (document.getElementById('waline')) {

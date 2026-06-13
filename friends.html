@@ -213,7 +213,7 @@
         }
         
         .cooperators-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 30px;
             display: flex;
@@ -221,11 +221,14 @@
             gap: 10px;
             position: relative;
             z-index: 1;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
-            background-size: 400% 400%;
+            
+            display: inline-block;
+            background: linear-gradient(90deg, #ff3b3b, #ff8c42, #f9d849, #6bdb7c, #3ca0ff, #8a6de9, #ff66b2);
+            background-size: 400% auto;
+            background-clip: text;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rainbow-text 3s ease infinite;
+            color: transparent;
+            animation: rainbowFlow 4s infinite ease-in-out;
         }
         
         .cooperators-grid {
@@ -297,15 +300,18 @@
         }
         
         .coop-name {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 500;
             position: relative;
             z-index: 1;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
-            background-size: 400% 400%;
+            
+            display: inline-block;
+            background: linear-gradient(90deg, #ff3b3b, #ff8c42, #f9d849, #6bdb7c, #3ca0ff, #8a6de9, #ff66b2);
+            background-size: 400% auto;
+            background-clip: text;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rainbow-text 3s ease infinite;
+            color: transparent;
+            animation: rainbowFlow 4s infinite ease-in-out;
         }
         
         .coop-desc {
@@ -321,6 +327,14 @@
         @keyframes rainbow-text {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes rainbowFlow {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 50%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 50%; }
             100% { background-position: 0% 50%; }
         }
         
