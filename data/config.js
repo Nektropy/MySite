@@ -36,6 +36,13 @@ const friendsConfig = [
     },
 
     {
+        name: "高新炀的小站",
+        url: "https://xinyang-gao.github.io",
+        avatar: "https://xinyang-gao.github.io/assets/avatar.webp",
+        desc: "一个装着些稀奇古怪东西的个人小站，欢迎来逛逛~"
+    },
+
+    {
         name: "石猫博客",
         url: "http://imshimao.com/",
         avatar: "https://www.vidlii.net/usfi/avt/1HH5cpvb235.jpg",
