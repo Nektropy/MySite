@@ -36,6 +36,13 @@ const friendsConfig = [
     },
 
     {
+        name: "XIAO-MAO",
+        url: "https://www.sitn.top",
+        avatar: "https://www.sitn.top/assets/img/avatar.png",
+        desc: "一只猫。"
+    },
+
+    {
         name: "高新炀的小站",
         url: "https://xinyang-gao.github.io",
         avatar: "https://xinyang-gao.github.io/assets/avatar.webp",
