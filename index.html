@@ -93,8 +93,8 @@
     <!-- 样式表：关键 CSS 同步，非关键 CSS 异步加载 -->
     <link rel="preload" href="/style.css" as="style">
     <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
     <!-- Font Awesome：异步加载，避免阻塞首屏 -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
@@ -110,8 +110,8 @@
     <link rel="preload" href="/data/config.js" as="script">
 
     <!-- 统计代码：异步加载，不阻塞渲染 -->
-    <script async charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-    <script>window.addEventListener('load',function(){if(typeof LA!=='undefined'){LA.init({id:"3OuXivrBfRfxJbLS",ck:"3OuXivrBfRfxJbLS",autoTrack:true,screenRecord:true});}});</script>
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    <script>document.getElementById('LA_COLLECT').onload=function(){if(typeof LA!=='undefined'){LA.init({id:"3OuXivrBfRfxJbLS",ck:"3OuXivrBfRfxJbLS",autoTrack:true,screenRecord:true});}};</script>
 </head>
 <body>
     <!-- 页面加载动画 -->
@@ -242,15 +242,23 @@
                         <div class="profile-social-links">
                             <a href="https://github.com/Nektropy" class="social-link" title="GitHub">
                                 <i class="fab fa-github"></i>
+                                <span>GitHub</span>
                             </a>
                             <a href="https://qm.qq.com/cgi-bin/qm/qr?k=3977278530" class="social-link" title="QQ">
                                 <i class="fab fa-qq"></i>
+                                <span>QQ</span>
                             </a>
                             <a href="mailto:psz0410@163.com" class="social-link" title="发邮件">
                                 <i class="fas fa-envelope"></i>
+                                <span>邮箱</span>
                             </a>
                             <a href="/blog" class="social-link" title="个人博客" target="_blank">
                                 <i class="fas fa-blog"></i>
+                                <span>博客</span>
+                            </a>
+                            <a href="https://navig.nekt.qzz.io" class="social-link" title="导航页" target="_blank">
+                                <i class="fas fa-compass"></i>
+                                <span>导航</span>
                             </a>
                         </div>
                     </div>
@@ -434,5 +442,20 @@
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script src="/data/config.js"></script>
     <script src="/main.js"></script>
+
+    <!-- Speculation Rules：hover 导航链接时预渲染目标页面，消除页面切换延迟 -->
+    <script type="speculationrules">
+    {
+        "prerender": [{
+            "source": "document",
+            "where": {
+                "or": [
+                    { "href_matches": "/(friends|divination|websites|downloads|index)\\.html$" }
+                ]
+            },
+            "eagerness": "moderate"
+        }]
+    }
+    </script>
 </body>
 </html>

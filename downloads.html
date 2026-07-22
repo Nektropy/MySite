@@ -25,8 +25,8 @@
     <link rel="preload" href="/data/config.js" as="script">
 
     <!-- 统计代码：异步加载，不阻塞渲染 -->
-    <script async charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-    <script>window.addEventListener('load',function(){if(typeof LA!=='undefined'){LA.init({id:"3OuXivrBfRfxJbLS",ck:"3OuXivrBfRfxJbLS",autoTrack:true,screenRecord:true});}});</script>
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    <script>document.getElementById('LA_COLLECT').onload=function(){if(typeof LA!=='undefined'){LA.init({id:"3OuXivrBfRfxJbLS",ck:"3OuXivrBfRfxJbLS",autoTrack:true,screenRecord:true});}};</script>
 </head>
 <body>
     <!-- 页面加载动画 -->
@@ -351,6 +351,21 @@
                 modal.style.display = 'none';
             }
         }
+    </script>
+
+    <!-- Speculation Rules：hover 导航链接时预渲染目标页面 -->
+    <script type="speculationrules">
+    {
+        "prerender": [{
+            "source": "document",
+            "where": {
+                "or": [
+                    { "href_matches": "/(friends|divination|websites|downloads|index)\\.html$" }
+                ]
+            },
+            "eagerness": "moderate"
+        }]
+    }
     </script>
 </body>
 </html>

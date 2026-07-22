@@ -3,50 +3,46 @@
 (function() {
     'use strict';
 
-    const isMobile = window.innerWidth <= 1024;
-    
     // 页面加载动画
     function initPageLoader() {
         const loader = document.getElementById('pageLoader');
         if (!loader) return;
         
         // 检查是否是首次访问
-        const hasVisited = localStorage.getItem('visited');
+        const hasVisited = sessionStorage.getItem('visited');
         
         if (!hasVisited) {
             // 首次访问，显示加载动画
             window.addEventListener('load', () => {
                 setTimeout(() => {
                     loader.classList.add('hidden');
-                    setTimeout(() => {
-                        loader.remove();
-                    }, 500);
-                }, 500);
+                    setTimeout(() => loader.remove(), 400);
+                }, 200);
             });
             
+            // 兜底超时
             setTimeout(() => {
                 if (loader.parentNode) {
                     loader.classList.add('hidden');
-                    setTimeout(() => loader.remove(), 500);
+                    setTimeout(() => loader.remove(), 400);
                 }
-            }, 3000);
+            }, 2500);
             
-            // 设置访问标记
-            localStorage.setItem('visited', 'true');
+            sessionStorage.setItem('visited', 'true');
         } else {
-            // 非首次访问，直接隐藏加载动画
-            loader.classList.add('hidden');
-            setTimeout(() => loader.remove(), 100);
+            // 非首次访问（同会话内页面切换），立即隐藏
+            loader.remove();
         }
     }
 
-    // 初始化侧边栏
+    // 初始化侧边栏：同时注册桌面端与移动端事件，由 CSS 控制显隐，无需 resize 刷新
     function initSidebar() {
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebarToggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuToggle = document.getElementById('menuToggle');
+        const menuDropdown = document.getElementById('menuDropdown');
         
-        if (!isMobile && sidebar && sidebarToggle) {
+        if (sidebar && sidebarToggle) {
             sidebarToggle.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -72,34 +68,23 @@
                     sidebar.classList.remove('no-transition');
                 }, 100);
             }
-        } else if (mobileMenu) {
-            const menuToggle = document.getElementById('menuToggle');
-            const menuDropdown = document.getElementById('menuDropdown');
-            
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    this.classList.toggle('active');
-                    menuDropdown.classList.toggle('active');
-                });
+        }
+        
+        if (menuToggle && menuDropdown) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                menuDropdown.classList.toggle('active');
+            });
 
-                document.addEventListener('click', function(e) {
-                    if (!menuToggle.contains(e.target) && !menuDropdown.contains(e.target)) {
-                        menuToggle.classList.remove('active');
-                        menuDropdown.classList.remove('active');
-                    }
-                });
-            }
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !menuDropdown.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    menuDropdown.classList.remove('active');
+                }
+            });
         }
     }
-
-    // 窗口大小改变处理
-    window.addEventListener('resize', () => {
-        const newIsMobile = window.innerWidth <= 1024;
-        if (newIsMobile !== isMobile) {
-            location.reload();
-        }
-    });
 
     // 主题切换
     function initTheme() {
@@ -1190,107 +1175,37 @@
         images.forEach(img => imageObserver.observe(img));
     }
 
-    // 平滑滚动优化
+    // 平滑滚动优化：交由 CSS scroll-behavior: smooth 处理，减少 JS 开销
     function initSmoothScroll() {
-        // 禁用原生平滑滚动，使用自定义实现
-        document.documentElement.style.scrollBehavior = 'auto';
-        
-        const scrollContainer = document.scrollingElement || document.documentElement;
-        let isScrolling = false;
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                
-                if (targetId === '#') return;
-                
-                const target = document.querySelector(targetId);
-                if (!target) return;
-                
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-                const startPosition = window.scrollY;
-                const distance = targetPosition - startPosition;
-                const duration = 800;
-                const startTime = performance.now();
-                
-                if (isScrolling) return;
-                isScrolling = true;
-                
-                function animate(currentTime) {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    
-                    // 使用缓动函数
-                    const easeProgress = 1 - Math.pow(1 - progress, 3);
-                    
-                    window.scrollTo({
-                        top: startPosition + distance * easeProgress,
-                        behavior: 'instant'
-                    });
-                    
-                    if (progress < 1) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        isScrolling = false;
-                    }
-                }
-                
-                requestAnimationFrame(animate);
-            });
-        });
+        document.documentElement.style.scrollBehavior = 'smooth';
     }
 
-    // 添加触摸反馈效果
+    // 添加触摸反馈效果：使用事件委托，减少监听器数量
     function initTouchFeedback() {
-        const buttons = document.querySelectorAll('button, a.nav-link, a.download-link, .folder-header, .file-item');
+        document.addEventListener('touchstart', function(e) {
+            const btn = e.target.closest('button, a.nav-link, a.download-link, .folder-header, .file-item, .social-link');
+            if (!btn) return;
+            btn.dataset.touchScale = btn.style.transform || '';
+            btn.style.transform = 'scale(0.97)';
+        }, { passive: true });
         
-        buttons.forEach(btn => {
-            btn.addEventListener('touchstart', function(e) {
-                this.style.transform = 'scale(0.97)';
-            }, { passive: true });
-            
-            btn.addEventListener('touchend', function(e) {
-                this.style.transform = '';
-            }, { passive: true });
-            
-            btn.addEventListener('touchcancel', function(e) {
-                this.style.transform = '';
-            }, { passive: true });
-        });
+        document.addEventListener('touchend', function(e) {
+            const btn = e.target.closest('button, a.nav-link, a.download-link, .folder-header, .file-item, .social-link');
+            if (!btn) return;
+            btn.style.transform = btn.dataset.touchScale || '';
+            delete btn.dataset.touchScale;
+        }, { passive: true });
+        
+        document.addEventListener('touchcancel', function(e) {
+            const btn = e.target.closest('button, a.nav-link, a.download-link, .folder-header, .file-item, .social-link');
+            if (!btn) return;
+            btn.style.transform = btn.dataset.touchScale || '';
+            delete btn.dataset.touchScale;
+        }, { passive: true });
     }
 
-    // 添加点击波纹效果
+    // 添加点击波纹效果：使用事件委托，避免给每个元素绑定监听
     function initRippleEffect() {
-        const rippleElements = document.querySelectorAll('.ripple-effect, button, a');
-        
-        rippleElements.forEach(element => {
-            element.addEventListener('click', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const ripple = document.createElement('span');
-                ripple.style.cssText = `
-                    position: absolute;
-                    border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.3);
-                    width: 10px;
-                    height: 10px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    transform: translate(-50%, -50%) scale(0);
-                    animation: ripple-animation 0.6s ease-out forwards;
-                    pointer-events: none;
-                `;
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-        
-        // 添加波纹动画样式
         if (!document.querySelector('#ripple-style')) {
             const style = document.createElement('style');
             style.id = 'ripple-style';
@@ -1304,6 +1219,35 @@
             `;
             document.head.appendChild(style);
         }
+        
+        document.addEventListener('click', function(e) {
+            const element = e.target.closest('.ripple-effect, button, a');
+            if (!element) return;
+            if (getComputedStyle(element).position === 'static') {
+                element.style.position = 'relative';
+            }
+            
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('span');
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                width: 10px;
+                height: 10px;
+                left: ${x}px;
+                top: ${y}px;
+                transform: translate(-50%, -50%) scale(0);
+                animation: ripple-animation 0.6s ease-out forwards;
+                pointer-events: none;
+            `;
+            
+            element.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
     }
 
     // 性能监控
@@ -1364,12 +1308,29 @@
         initRippleEffect();
         initPerformanceMonitoring();
         
-        // 延迟加载 Waline (仅在有评论区的页面)
+        // 延迟加载 Waline：滚动到评论区附近再加载，减少首屏请求与 JS 执行
         if (document.getElementById('waline')) {
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(initWaline, { timeout: 2000 });
+            const walineCard = document.getElementById('walineCard') || document.getElementById('waline');
+            if ('IntersectionObserver' in window) {
+                const walineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            walineObserver.disconnect();
+                            initWaline();
+                        }
+                    });
+                }, {
+                    rootMargin: '200px 0px',
+                    threshold: 0
+                });
+                walineObserver.observe(walineCard);
             } else {
-                setTimeout(initWaline, 100);
+                // 降级：页面空闲或 2s 后加载
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(initWaline, { timeout: 2000 });
+                } else {
+                    setTimeout(initWaline, 2000);
+                }
             }
         }
     });
