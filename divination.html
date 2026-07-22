@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>赛博算卦 | 熵的个人主页 - 科技与玄学的碰撞</title>
     <meta name="description" content="欢迎来到熵的赛博算卦站！用代码和随机算法占上一卜。快来试试你的运势吧。">
     <meta name="keywords" content="熵,赛博算卦,熵的小站,周易,六十四卦">
@@ -10,12 +10,22 @@
     <meta name="theme-color" content="#2563eb">
     <link rel="icon" href="/img/head.webp">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 预连接优化 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <!-- 样式表：关键 CSS 同步，非关键 CSS 异步加载 -->
+    <link rel="preload" href="/style.css" as="style">
     <link rel="stylesheet" href="/style.css">
-    
-    <!-- 统计代码 -->
-    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-    <script>LA.init({id:"3OuXivrBfRfxJbLS",ck:"3OuXivrBfRfxJbLS",autoTrack:true,screenRecord:true})</script>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- 资源预加载 -->
+    <link rel="preload" href="/main.js" as="script">
+
+    <!-- 统计代码：异步加载，不阻塞渲染 -->
+    <script async charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    <script>window.addEventListener('load',function(){if(typeof LA!=='undefined'){LA.init({id:"3OuXivrBfRfxJbLS",ck:"3OuXivrBfRfxJbLS",autoTrack:true,screenRecord:true});}});</script>
     <style>
         /* 算卦特有样式 */
         .divination-wrapper {

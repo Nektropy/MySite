@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>熵的小站 - Nektropy的个人主页 | 高中生极客的技术探索</title>
     <meta name="description" content="熵的小站，一名对计算机科学充满热情的高中生，专注于Python、Web开发和人工智能技术探索，分享技术笔记和个人成长历程。">
     <meta name="keywords" content="Nektropy,熵,熵的小站,高中生极客,Python编程,Web开发,技术博客,熵的个人主页">
@@ -80,37 +80,38 @@
     }
     </script>
 
-    <!-- 样式表 -->
+    <!-- 预连接优化：只保留一次，避免重复建立连接 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <!-- Waline CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
-    
-    <!-- 预连接优化 -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://unpkg.com">
     <link rel="preconnect" href="https://nekt.mxw2024.top">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://nekt.mxw2024.top">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    
-    <!-- 资源预加载 -->
-    <link rel="preload" href="/img/head.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="/img/bg-pc.webp" as="image" media="(min-width: 769px)">
-    <link rel="preload" href="/img/bg-mobile.webp" as="image" media="(max-width: 768px)">
+
+    <!-- 样式表：关键 CSS 同步，非关键 CSS 异步加载 -->
     <link rel="preload" href="/style.css" as="style">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <!-- Font Awesome：异步加载，避免阻塞首屏 -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <!-- Waline CSS：评论区在底部，异步加载 -->
+    <link rel="preload" href="https://unpkg.com/@waline/client@v3/dist/waline.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css"></noscript>
+
+    <!-- 资源预加载：只保留首屏真正需要的资源 -->
+    <link rel="preload" href="/img/head.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="/img/bg-pc.webp" as="image" media="(min-width: 769px)" fetchpriority="low">
+    <link rel="preload" href="/img/bg-mobile.webp" as="image" media="(max-width: 768px)" fetchpriority="low">
     <link rel="preload" href="/main.js" as="script">
     <link rel="preload" href="/data/config.js" as="script">
 
-    <!-- 统计代码 -->
-    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-    <script>LA.init({id:"3OuXivrBfRfxJbLS",ck:"3OuXivrBfRfxJbLS",autoTrack:true,screenRecord:true})</script>
+    <!-- 统计代码：异步加载，不阻塞渲染 -->
+    <script async charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    <script>window.addEventListener('load',function(){if(typeof LA!=='undefined'){LA.init({id:"3OuXivrBfRfxJbLS",ck:"3OuXivrBfRfxJbLS",autoTrack:true,screenRecord:true});}});</script>
 </head>
 <body>
     <!-- 页面加载动画 -->
@@ -229,7 +230,7 @@
             <div class="cards-container">
                 <div class="card profile-card">
                     <div class="profile-img">
-                        <img src="/img/head.webp" alt="头像">
+                        <img src="/img/head.webp" alt="头像" width="140" height="140" fetchpriority="high" decoding="async">
                     </div>
                     <div class="profile-info">
                         <h2 class="name">熵</h2>
