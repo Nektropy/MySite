@@ -13,20 +13,24 @@
         
         if (!hasVisited) {
             // 首次访问，显示加载动画
-            window.addEventListener('load', () => {
-                setTimeout(() => {
+            const hideLoader = () => {
+                if (loader && loader.parentNode) {
                     loader.classList.add('hidden');
-                    setTimeout(() => loader.remove(), 400);
-                }, 200);
-            });
+                    setTimeout(() => {
+                        if (loader.parentNode) loader.remove();
+                    }, 400);
+                }
+            };
+            
+            // DOMContentLoaded 立即移除，不等资源加载
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', hideLoader);
+            } else {
+                hideLoader();
+            }
             
             // 兜底超时
-            setTimeout(() => {
-                if (loader.parentNode) {
-                    loader.classList.add('hidden');
-                    setTimeout(() => loader.remove(), 400);
-                }
-            }, 2500);
+            setTimeout(hideLoader, 1500);
             
             sessionStorage.setItem('visited', 'true');
         } else {
