@@ -32,7 +32,8 @@
 ## 🛠️ 技术栈
 
 -   **前端框架**: 原生 HTML5 / CSS3 / JavaScript (ES6+)
--   **图标库**: [Font Awesome 6](https://fontawesome.com/) (via CDN)
+-   **图标库**: [Font Awesome 6](https://fontawesome.com/)（本地子集，仅打包站内用到的 45 个图标）
+-   **字体**: Inter 可变字体（本地 Latin 子集，中文回落到系统字体，不再请求 Google Fonts）
 -   **评论系统**: [Waline](https://waline.js.org/) (部署于后端服务器)
 -   **API 集成**:
     -   每日一言: [hitokoto.cn](https://hitokoto.cn)

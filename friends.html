@@ -10,15 +10,10 @@
     <meta name="author" content="熵">
     <link rel="icon" href="/img/head.webp">
 
-    <!-- 预连接优化 -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-
-    <!-- 样式表：关键 CSS 同步，非关键 CSS 异步加载 -->
+    <!-- 本地图标子集 + 主样式 -->
     <link rel="preload" href="/style.css" as="style">
+    <link rel="stylesheet" href="/fonts/fontawesome-subset.css">
     <link rel="stylesheet" href="/style.css">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <!-- 资源预加载 -->
     <link rel="preload" href="/data/config.js" as="script">
